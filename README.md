@@ -1,48 +1,204 @@
 # KS2sample and Kuiper2sample
 
-Wolfram Language implementations of the two-sample Kolmogorov–Smirnov and Kuiper tests based on the methodology of the R package KSgeneral.
+Wolfram Language implementations of the exact two-sample Kolmogorov–Smirnov
+and Kuiper tests, companion to the R package
+[KSgeneral](https://CRAN.R-project.org/package=KSgeneral) and to the paper:
 
-These functions provide exact permutation inference for continuous, discrete, and mixed distributions, including data with ties. In addition to reproducing the underlying methodology of KSgeneral, the Wolfram Language implementation leverages exact arithmetic, allowing p-values to be represented as exact rational numbers or evaluated to arbitrary precision.
+> Dimitrova, D. S., Jia, Y., Kaishev, V. K. (2026). Efficient Exact
+> Calculation of p-values of the Two-sample Kolmogorov–Smirnov and Kuiper
+> Tests. *To appear in Journal of Statistical Computation and Simulation.*
 
-The original KSgeneral package is available at:
+The functions provide exact permutation p-values for continuous, discrete, and
+mixed distributions, including data with ties. Because the Wolfram Language
+performs exact rational arithmetic natively, p-values are returned as exact
+rational numbers and can be evaluated to arbitrary numerical precision — a
+property not available in the R/C++ implementation.
 
-* [KSgeneral GitHub repository](https://github.com/d-dimitrova/KSgeneral)
-* [KSgeneral CRAN repository](https://CRAN.R-project.org/package=KSgeneral)
+Both functions are submitted to the
+[Wolfram Function Repository](https://resources.wolframcloud.com/FunctionRepository/).
 
-This repository provides Wolfram Language implementations of the two-sample procedures `KS2sample` and `Kuiper2sample` and serves as a companion repository for their submission to the Wolfram Function Repository.
+---
 
 ## Functions
 
-* `KS2sample` — computes weighted two-sample Kolmogorov–Smirnov statistics and their exact permutation p-values.
-* `Kuiper2sample` — computes the two-sample Kuiper statistic and its exact permutation p-value.
+### `KS2sample`
+
+Computes the exact p-value of the (weighted) two-sample Kolmogorov–Smirnov
+test.
+
+**Data interface** — accepts raw samples and returns `{statistic, p-value}`:
+
+```mathematica
+KS2sample[data1, data2]
+KS2sample[data1, data2, alternative]
+KS2sample[data1, data2, alternative, weight]
+```
+
+**Low-level interface** — accepts precomputed inputs and returns the p-value:
+
+```mathematica
+KS2sample[m, n, alternative, M, q]
+KS2sample[m, n, alternative, M, q, wvec]
+```
+
+| Argument | Description |
+|---|---|
+| `data1`, `data2` | Numeric lists; the two samples. May contain ties. |
+| `alternative` | `"TwoSided"` (default), `"Greater"`, or `"Less"`. |
+| `weight` | `0` (unweighted, default); `ν ∈ (0,1]` for W(t) = 1/[t(1−t)]^ν; or a user-supplied pure function. |
+| `m`, `n` | Sample sizes. |
+| `M` | Integer list of length k: multiplicity of each distinct pooled-sample value. `Total[M] == m+n`. |
+| `q` | Observed value of the KS statistic. |
+| `wvec` | Weight vector of length m+n−1: `wvec[[i]] = W(i/(m+n))`. |
+
+**Examples:**
+
+```mathematica
+(* Unweighted two-sided test *)
+KS2sample[data1, data2]
+(* {0.233333, 17/143} *)
+
+(* One-sided test with Anderson–Darling weight (ν = 1/2) *)
+KS2sample[data1, data2, "Greater", 1/2]
+
+(* Low-level call: Nikiforov (1994) example *)
+KS2sample[120, 150, "TwoSided", {80, 70, 40, 80}, 1/10]
+```
+
+---
+
+### `Kuiper2sample`
+
+Computes the exact p-value of the two-sample Kuiper test.
+
+**Data interface:**
+
+```mathematica
+Kuiper2sample[data1, data2]
+```
+
+**Low-level interface:**
+
+```mathematica
+Kuiper2sample[m, n, M, q]
+```
+
+The Kuiper statistic V = Δ⁺ + Δ⁻ is the sum of the supremum and infimum of
+the empirical CDF difference. Its invariance to cyclic shifts makes it
+particularly suited to circular and seasonal data.
+
+**Example:**
+
+```mathematica
+(* Circular data with ties *)
+data1 = Join[ConstantArray[Pi/2, 30], ConstantArray[Pi, 30],
+             ConstantArray[3 Pi/2, 30], ConstantArray[2 Pi, 30]];
+data2 = Join[ConstantArray[Pi/2, 50], ConstantArray[Pi, 40],
+             ConstantArray[3 Pi/2, 10], ConstantArray[2 Pi, 50]];
+Kuiper2sample[data1, data2]
+```
+
+---
 
 ## Method
 
-Given two samples `X = {X₁, ..., Xₘ}` and `Y = {Y₁, ..., Yₙ}`, the observations are pooled into
+Given two samples X = {X₁, …, Xₘ} and Y = {Y₁, …, Yₙ}, the observations
+are pooled. Under the null hypothesis that both samples arise from the same
+distribution, the permutation distribution considers all Binomial[m+n, m]
+reallocations of the pooled sample into groups of sizes m and n. The p-value
+is the proportion of reallocations for which the test statistic is at least as
+extreme as the observed value.
 
-`Z = {X₁, ..., Xₘ, Y₁, ..., Yₙ}`.
+The p-value is computed via the recurrence of Nikiforov (1994), extended by
+Dimitrova, Jia, Kaishev (2026) to support arbitrary weight functions and
+tied observations. The recurrence runs in O(mn) time for `KS2sample` and
+O((mn)²) for `Kuiper2sample`. All arithmetic is exact; no floating-point
+tolerance parameter is required.
 
-Under the null hypothesis that both samples arise from the same distribution, the permutation distribution is obtained by considering all `Binomial[m+n, m]` reallocations of the pooled sample into two groups of sizes `m` and `n`. The p-value is the proportion of reallocations whose test statistic is at least as extreme as the observed value.
+By Theorem 1 (KS) and Theorem 3 (Kuiper) of Dimitrova, Jia, Kaishev (2026),
+the permutation p-value is asymptotically consistent with the unconditional
+p-value for arbitrary underlying distributions F and G.
+
+---
 
 ## Features
 
-* Exact permutation inference
-* Exact rational p-values and arbitrary-precision numerical output
-* Supports continuous, discrete, and mixed distributions
-* Supports ties
-* Weighted Kolmogorov–Smirnov statistics
-* User-defined weight functions
-* Pure Wolfram Language implementation
+| | `KS2sample` | `Kuiper2sample` |
+|---|---|---|
+| Exact rational p-values | ✓ | ✓ |
+| Continuous data | ✓ | ✓ |
+| Discrete data / ties | ✓ | ✓ |
+| Unequal sample sizes | ✓ | ✓ |
+| Weighted statistic | ✓ | — |
+| User-defined weight function | ✓ | — |
+| One-sided alternatives | ✓ | — |
+| Circular data | — | ✓ |
+
+---
 
 ## Repository Contents
 
-* `KS2sample.nb` — documentation notebook for the weighted two-sample KS test.
-* `Kuiper2sample.nb` — documentation notebook for the two-sample Kuiper test.
+| File | Description |
+|---|---|
+| `KS2sample.nb` | Wolfram Function Repository definition notebook for `KS2sample`. |
+| `Kuiper2sample.nb` | Wolfram Function Repository definition notebook for `Kuiper2sample`. |
+| `README.md` | This file. |
 
-## Function Repository
+---
 
-These functions are intended for submission to the Wolfram Function Repository.
+## Installation
+
+Once published to the Wolfram Function Repository, the functions can be loaded
+with:
+
+```mathematica
+ResourceFunction["KS2sample"][data1, data2]
+ResourceFunction["Kuiper2sample"][data1, data2]
+```
+
+Until publication, load the definition notebooks directly in Mathematica.
+
+---
+
+## Relation to KSgeneral
+
+This repository is a Wolfram Language companion to the R package KSgeneral.
+The algorithms are identical; the implementations differ in two respects:
+
+- **Exact arithmetic.** The Wolfram Language performs rational arithmetic
+  natively. The R/C++ implementation uses floating-point arithmetic and
+  requires a tolerance parameter `tol` to handle boundary cases; the
+  Mathematica implementation instead uses `Ceiling[x] - 1` for the upper
+  column bound, which enforces strict inequality exactly.
+
+- **Output.** The data interfaces return `{statistic, p-value}` as a list.
+  The low-level interfaces return the p-value only.
+
+| R function | Mathematica equivalent |
+|---|---|
+| `KS2sample` | `KS2sample[data1, data2, …]` |
+| `KS2sample_Rcpp` / `KS2sample_c_Rcpp` | `KS2sample[m, n, alternative, M, q, wvec]` |
+| `Kuiper2sample` | `Kuiper2sample[data1, data2]` |
+| `Kuiper2sample_Rcpp` / `Kuiper2sample_c_Rcpp` | `Kuiper2sample[m, n, M, q]` |
+
+KSgeneral is available at:
+- [KSgeneral on CRAN](https://CRAN.R-project.org/package=KSgeneral)
+- [KSgeneral on GitHub](https://github.com/d-dimitrova/KSgeneral)
+
+---
 
 ## References
 
-Dimitrova, D. S., Jia, Y., Kaishev, V. K. (2026). Efficient Exact Calculation of p-values of the Two-sample Kolmogorov-Smirnov and Kuiper Tests. To appear in Journal of Statistical Computation and Simulation.
+Dimitrova, D. S., Jia, Y., Kaishev, V. K. (2026). Efficient Exact Calculation
+of p-values of the Two-sample Kolmogorov–Smirnov and Kuiper Tests. *To appear
+in Journal of Statistical Computation and Simulation.*
+
+Nikiforov, A. M. (1994). Algorithm AS 288: Exact Smirnov Two-Sample Tests for
+Arbitrary Distributions. *Journal of the Royal Statistical Society, Series C*,
+43(1), 265–270.
+
+Kuiper, N. H. (1960). Tests concerning random points on a circle.
+*Proceedings Koninklijke Nederlandse Akademie van Wetenschappen A*, 63, 38–47.
+
+Maag, U. R., Stephens, M. A. (1968). The V_NM two-sample test. *Annals of
+Mathematical Statistics*, 39(3), 923–935.
