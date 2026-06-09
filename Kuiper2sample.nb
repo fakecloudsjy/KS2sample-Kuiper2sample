@@ -70,215 +70,226 @@ Cell[BoxData[{
    RowBox[{"kuiperks", "[", 
     RowBox[{
     "m1_Integer", ",", "n1_Integer", ",", "qup_", ",", "qdown_", ",", 
-     "M_List"}], "]"}], ":=", 
+     "multiplicity_List"}], "]"}], ":=", 
    RowBox[{"Module", "[", 
     RowBox[{
      RowBox[{"{", 
       RowBox[{
-      "P", ",", "R", ",", "Ni", ",", "SLOPE", ",", "DEVIATUP", ",", 
-       "DEVIATDOWN", ",", "ICAT", ",", "NTIES", ",", "ILE", ",", "IRI", ",", 
-       "ILES", ",", "IRIS", ",", "IRI2", ",", "ILE2", ",", "DL", ",", 
-       "NEWRCT", ",", "L2", ",", "ILEFT", ",", "IRIGHT", ",", "JUPP", ",", 
-       "JLOW"}], "}"}], ",", 
+      "p", ",", "r", ",", "ni", ",", "slope", ",", "deviatUp", ",", 
+       "deviatDown", ",", "icat", ",", "nties", ",", "ile", ",", "iri", ",", 
+       "iles", ",", "iris", ",", "iri2", ",", "ile2", ",", "dl", ",", 
+       "newrct", ",", "l2", ",", "ileft", ",", "iright", ",", "jupp", ",", 
+       "jlow"}], "}"}], ",", 
      RowBox[{
-      RowBox[{"NEWRCT", "=", "True"}], ";", 
-      RowBox[{"Ni", "=", 
+      RowBox[{"newrct", "=", "True"}], ";", 
+      RowBox[{"ni", "=", 
        RowBox[{"m1", "+", "n1"}]}], ";", 
-      RowBox[{"ICAT", "=", "2"}], ";", "\[IndentingNewLine]", 
-      RowBox[{"P", "=", 
+      RowBox[{"icat", "=", "2"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"p", "=", 
        RowBox[{"Table", "[", 
         RowBox[{"0", ",", 
          RowBox[{"m1", "+", "2"}]}], "]"}]}], ";", 
       RowBox[{
-       RowBox[{"P", "[", 
+       RowBox[{"p", "[", 
         RowBox[{"[", "1", "]"}], "]"}], "=", "1"}], ";", 
       "\[IndentingNewLine]", 
-      RowBox[{"SLOPE", "=", 
-       RowBox[{"m1", "/", "Ni"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"DEVIATUP", "=", 
-       RowBox[{"SLOPE", "*", 
+      RowBox[{"slope", "=", 
+       RowBox[{"m1", "/", "ni"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"deviatUp", "=", 
+       RowBox[{"slope", "*", 
         RowBox[{"(", 
          RowBox[{"qup", "+", 
           RowBox[{"10", "^", 
            RowBox[{"-", "9"}]}]}], ")"}], "*", "n1"}]}], ";", 
       "\[IndentingNewLine]", 
-      RowBox[{"DEVIATDOWN", "=", 
-       RowBox[{"SLOPE", "*", 
+      RowBox[{"deviatDown", "=", 
+       RowBox[{"slope", "*", 
         RowBox[{"(", 
          RowBox[{"qdown", "+", 
           RowBox[{"10", "^", 
            RowBox[{"-", "9"}]}]}], ")"}], "*", "n1"}]}], ";", 
       "\[IndentingNewLine]", 
-      RowBox[{"ILE", "=", 
-       RowBox[{"IRI", "=", 
-        RowBox[{"ILE2", "=", 
-         RowBox[{"IRI2", "=", 
-          RowBox[{"L2", "=", 
-           RowBox[{"DL", "=", "0"}]}]}]}]}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"NTIES", "=", 
-       RowBox[{"M", "[", 
+      RowBox[{"ile", "=", 
+       RowBox[{"iri", "=", 
+        RowBox[{"ile2", "=", 
+         RowBox[{"iri2", "=", 
+          RowBox[{"l2", "=", 
+           RowBox[{"dl", "=", "0"}]}]}]}]}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"nties", "=", 
+       RowBox[{"multiplicity", "[", 
         RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"R", "=", 
+      RowBox[{"r", "=", 
        RowBox[{"Prepend", "[", 
-        RowBox[{"P", ",", "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"p", ",", "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
       RowBox[{"Do", "[", 
        RowBox[{
         RowBox[{
-         RowBox[{"R", "=", 
+         RowBox[{"r", "=", 
           RowBox[{"Prepend", "[", 
-           RowBox[{"P", ",", "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"p", ",", "0"}], "]"}]}], ";", "\[IndentingNewLine]", 
          RowBox[{"If", "[", 
           RowBox[{
-           RowBox[{"NTIES", "==", "1"}], ",", 
+           RowBox[{"nties", "==", "1"}], ",", 
            RowBox[{
-            RowBox[{"DL", "=", 
-             RowBox[{"L", "*", "SLOPE"}]}], ";", "\[IndentingNewLine]", 
-            RowBox[{"IRI", "=", 
+            RowBox[{"dl", "=", 
+             RowBox[{"L", "*", "slope"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{"iri", "=", 
              RowBox[{"Min", "[", 
               RowBox[{
                RowBox[{"Floor", "[", 
-                RowBox[{"DL", "+", "DEVIATDOWN"}], "]"}], ",", "L", ",", 
+                RowBox[{"dl", "+", "deviatDown"}], "]"}], ",", "L", ",", 
                "m1"}], "]"}]}], ";", "\[IndentingNewLine]", 
-            RowBox[{"ILE", "=", 
+            RowBox[{"ile", "=", 
              RowBox[{"Max", "[", 
               RowBox[{
                RowBox[{"Floor", "[", 
-                RowBox[{"DL", "-", "DEVIATUP", "+", "1"}], "]"}], ",", 
+                RowBox[{"dl", "-", "deviatUp", "+", "1"}], "]"}], ",", 
                RowBox[{"L", "-", "n1"}], ",", "0"}], "]"}]}], ";", 
             "\[IndentingNewLine]", 
-            RowBox[{"NTIES", "=", 
-             RowBox[{"M", "[", 
-              RowBox[{"[", "ICAT", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-            RowBox[{"ICAT", "=", 
-             RowBox[{"ICAT", "+", "1"}]}], ";", "\[IndentingNewLine]", 
-            RowBox[{"NEWRCT", "=", "True"}]}], ",", 
+            RowBox[{"nties", "=", 
+             RowBox[{"multiplicity", "[", 
+              RowBox[{"[", "icat", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{"icat", "=", 
+             RowBox[{"icat", "+", "1"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{"newrct", "=", "True"}]}], ",", 
            RowBox[{
-            RowBox[{"NTIES", "=", 
-             RowBox[{"NTIES", "-", "1"}]}], ";", "\[IndentingNewLine]", 
+            RowBox[{"nties", "=", 
+             RowBox[{"nties", "-", "1"}]}], ";", "\[IndentingNewLine]", 
             RowBox[{"If", "[", 
-             RowBox[{"NEWRCT", ",", 
+             RowBox[{"newrct", ",", 
               RowBox[{
-               RowBox[{"NEWRCT", "=", "False"}], ";", "\[IndentingNewLine]", 
-               RowBox[{"L2", "=", 
-                RowBox[{"L", "+", "NTIES"}]}], ";", "\[IndentingNewLine]", 
-               RowBox[{"DL", "=", 
-                RowBox[{"L2", "*", "SLOPE"}]}], ";", "\[IndentingNewLine]", 
-               RowBox[{"IRI2", "=", 
+               RowBox[{"newrct", "=", "False"}], ";", "\[IndentingNewLine]", 
+               RowBox[{"l2", "=", 
+                RowBox[{"L", "+", "nties"}]}], ";", "\[IndentingNewLine]", 
+               RowBox[{"dl", "=", 
+                RowBox[{"l2", "*", "slope"}]}], ";", "\[IndentingNewLine]", 
+               RowBox[{"iri2", "=", 
                 RowBox[{"Min", "[", 
                  RowBox[{
                   RowBox[{"Floor", "[", 
-                   RowBox[{"DL", "+", "DEVIATDOWN"}], "]"}], ",", "L2", ",", 
+                   RowBox[{"dl", "+", "deviatDown"}], "]"}], ",", "l2", ",", 
                   "m1"}], "]"}]}], ";", "\[IndentingNewLine]", 
-               RowBox[{"ILE2", "=", 
+               RowBox[{"ile2", "=", 
                 RowBox[{"Max", "[", 
                  RowBox[{
                   RowBox[{"Floor", "[", 
-                   RowBox[{"DL", "-", "DEVIATUP", "+", "1"}], "]"}], ",", 
-                  RowBox[{"L2", "-", "n1"}], ",", "0"}], "]"}]}], ";", 
+                   RowBox[{"dl", "-", "deviatUp", "+", "1"}], "]"}], ",", 
+                  RowBox[{"l2", "-", "n1"}], ",", "0"}], "]"}]}], ";", 
                "\[IndentingNewLine]", 
-               RowBox[{"ILEFT", "=", "ILE"}], ";", "\[IndentingNewLine]", 
-               RowBox[{"IRIGHT", "=", "IRI2"}], ";", "\[IndentingNewLine]", 
-               RowBox[{"JUPP", "=", 
-                RowBox[{"L2", "-", "ILE2"}]}], ";", "\[IndentingNewLine]", 
-               RowBox[{"JLOW", "=", 
-                RowBox[{"L", "-", "IRI", "-", "1"}]}]}]}], "]"}], ";", 
+               RowBox[{"ileft", "=", "ile"}], ";", "\[IndentingNewLine]", 
+               RowBox[{"iright", "=", "iri2"}], ";", "\[IndentingNewLine]", 
+               RowBox[{"jupp", "=", 
+                RowBox[{"l2", "-", "ile2"}]}], ";", "\[IndentingNewLine]", 
+               RowBox[{"jlow", "=", 
+                RowBox[{"L", "-", "iri", "-", "1"}]}]}]}], "]"}], ";", 
             "\[IndentingNewLine]", 
-            RowBox[{"ILE", "=", 
+            RowBox[{"ile", "=", 
              RowBox[{"Max", "[", 
-              RowBox[{"ILEFT", ",", 
-               RowBox[{"L", "-", "JUPP"}]}], "]"}]}], ";", 
+              RowBox[{"ileft", ",", 
+               RowBox[{"L", "-", "jupp"}]}], "]"}]}], ";", 
             "\[IndentingNewLine]", 
-            RowBox[{"IRI", "=", 
+            RowBox[{"iri", "=", 
              RowBox[{"Min", "[", 
-              RowBox[{"IRIGHT", ",", 
-               RowBox[{"L", "-", "JLOW"}]}], "]"}]}]}]}], "]"}], ";", 
+              RowBox[{"iright", ",", 
+               RowBox[{"L", "-", "jlow"}]}], "]"}]}]}]}], "]"}], ";", 
          "\[IndentingNewLine]", 
-         RowBox[{"ILES", "=", 
+         RowBox[{"iles", "=", 
           RowBox[{"Max", "[", 
-           RowBox[{"0", ",", "ILE"}], "]"}]}], ";", 
-         RowBox[{"IRIS", "=", 
+           RowBox[{"0", ",", "ile"}], "]"}]}], ";", 
+         RowBox[{"iris", "=", 
           RowBox[{"Min", "[", 
-           RowBox[{"L", ",", "IRI"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"L", ",", "iri"}], "]"}]}], ";", "\[IndentingNewLine]", 
          RowBox[{
-          RowBox[{"P", "[", 
+          RowBox[{"p", "[", 
            RowBox[{"[", 
             RowBox[{
              RowBox[{"(", 
-              RowBox[{"ILES", "+", "1"}], ")"}], ";;", 
+              RowBox[{"iles", "+", "1"}], ")"}], ";;", 
              RowBox[{"(", 
-              RowBox[{"IRIS", "+", "1"}], ")"}]}], "]"}], "]"}], "=", 
+              RowBox[{"iris", "+", "1"}], ")"}]}], "]"}], "]"}], "=", 
           RowBox[{
-           RowBox[{"R", "[", 
+           RowBox[{"r", "[", 
             RowBox[{"[", 
              RowBox[{
               RowBox[{"(", 
-               RowBox[{"ILES", "+", "2"}], ")"}], ";;", 
+               RowBox[{"iles", "+", "2"}], ")"}], ";;", 
               RowBox[{"(", 
-               RowBox[{"IRIS", "+", "2"}], ")"}]}], "]"}], "]"}], "+", 
-           RowBox[{"R", "[", 
+               RowBox[{"iris", "+", "2"}], ")"}]}], "]"}], "]"}], "+", 
+           RowBox[{"r", "[", 
             RowBox[{"[", 
              RowBox[{
               RowBox[{"(", 
-               RowBox[{"ILES", "+", "1"}], ")"}], ";;", 
+               RowBox[{"iles", "+", "1"}], ")"}], ";;", 
               RowBox[{"(", 
-               RowBox[{"IRIS", "+", "1"}], ")"}]}], "]"}], "]"}]}]}], ";", 
+               RowBox[{"iris", "+", "1"}], ")"}]}], "]"}], "]"}]}]}], ";", 
          "\[IndentingNewLine]", 
-         RowBox[{"ILES", "=", 
+         RowBox[{"iles", "=", 
           RowBox[{"Max", "[", 
-           RowBox[{"1", ",", "ILE"}], "]"}]}], ";", 
-         RowBox[{"IRIS", "=", 
+           RowBox[{"1", ",", "ile"}], "]"}]}], ";", 
+         RowBox[{"iris", "=", 
           RowBox[{"Min", "[", 
            RowBox[{
-            RowBox[{"L", "-", "1"}], ",", "IRI"}], "]"}]}], ";", 
+            RowBox[{"L", "-", "1"}], ",", "iri"}], "]"}]}], ";", 
          "\[IndentingNewLine]", 
          RowBox[{
-          RowBox[{"P", "[", 
-           RowBox[{"[", "ILES", "]"}], "]"}], "=", 
+          RowBox[{"p", "[", 
+           RowBox[{"[", "iles", "]"}], "]"}], "=", 
           RowBox[{"If", "[", 
            RowBox[{
-            RowBox[{"ILE", "==", "0"}], ",", "1", ",", "0"}], "]"}]}], ";", 
+            RowBox[{"ile", "==", "0"}], ",", "1", ",", "0"}], "]"}]}], ";", 
          "\[IndentingNewLine]", 
          RowBox[{
-          RowBox[{"P", "[", 
+          RowBox[{"p", "[", 
            RowBox[{"[", 
-            RowBox[{"IRIS", "+", "2"}], "]"}], "]"}], "=", 
+            RowBox[{"iris", "+", "2"}], "]"}], "]"}], "=", 
           RowBox[{"If", "[", 
            RowBox[{
-            RowBox[{"IRI", "==", "L"}], ",", "1", ",", "0"}], "]"}]}]}], ",", 
+            RowBox[{"iri", "==", "L"}], ",", "1", ",", "0"}], "]"}]}]}], ",", 
         RowBox[{"{", 
          RowBox[{"L", ",", "1", ",", 
-          RowBox[{"Ni", "-", "1"}]}], "}"}]}], "]"}], ";", 
+          RowBox[{"ni", "-", "1"}]}], "}"}]}], "]"}], ";", 
       "\[IndentingNewLine]", 
       RowBox[{
-       RowBox[{"P", "[", 
+       RowBox[{"p", "[", 
         RowBox[{"[", 
          RowBox[{"m1", "+", "1"}], "]"}], "]"}], "+", 
-       RowBox[{"P", "[", 
-        RowBox[{"[", "m1", "]"}], "]"}]}]}]}], "]"}]}], "\[IndentingNewLine]",
-   "\n"}], "\[IndentingNewLine]", 
+       RowBox[{"p", "[", 
+        RowBox[{"[", "m1", "]"}], "]"}]}]}]}], "]"}]}], "\n", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"Kuiper2sample", "[", 
-    RowBox[{"m_Integer", ",", "n_Integer", ",", "M_List", ",", "q_"}], "]"}], 
-   ":=", 
+    RowBox[{"m_Integer", ",", "n_Integer", ",", "q_"}], "]"}], ":=", 
+   RowBox[{"Kuiper2sample", "[", 
+    RowBox[{"m", ",", "n", ",", 
+     RowBox[{"ConstantArray", "[", 
+      RowBox[{"1", ",", 
+       RowBox[{"m", "+", "n"}]}], "]"}], ",", "q"}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Kuiper2sample", "[", 
+    RowBox[{
+    "m_Integer", ",", "n_Integer", ",", "multiplicity_List", ",", "q_"}], 
+    "]"}], ":=", 
    RowBox[{"Module", "[", 
     RowBox[{
      RowBox[{"{", 
-      RowBox[{"nxy", ",", "Ci", ",", "pos", ",", "neg", ",", "p"}], "}"}], ",", 
+      RowBox[{"nxy", ",", "ci", ",", "pos", ",", "neg", ",", "p"}], "}"}], ",", 
      RowBox[{
       RowBox[{"nxy", "=", 
        RowBox[{"LCM", "[", 
         RowBox[{"m", ",", "n"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"Ci", "=", 
+      RowBox[{"ci", "=", 
        RowBox[{"Ceiling", "[", 
         RowBox[{
          RowBox[{"q", "*", "nxy"}], "-", "1"}], "]"}]}], ";", 
       "\[IndentingNewLine]", 
       RowBox[{"Which", "[", 
        RowBox[{
-        RowBox[{"Ci", "<=", "0"}], ",", "1", ",", 
+        RowBox[{"ci", "<=", "0"}], ",", "1", ",", 
         RowBox[{"q", ">=", "2"}], ",", "0", ",", 
-        RowBox[{"Ci", "<=", 
+        RowBox[{"ci", "<=", 
          RowBox[{"nxy", "-", "1"}]}], ",", 
         RowBox[{
          RowBox[{"pos", "=", 
@@ -287,8 +298,8 @@ Cell[BoxData[{
             RowBox[{"{", 
              RowBox[{"{", 
               RowBox[{"m", ",", "n", ",", 
-               RowBox[{"Ci", "/", "nxy"}], ",", "0", ",", "M"}], "}"}], "}"}],
-             ",", 
+               RowBox[{"ci", "/", "nxy"}], ",", "0", ",", "multiplicity"}], 
+              "}"}], "}"}], ",", 
             RowBox[{"Table", "[", 
              RowBox[{
               RowBox[{"{", 
@@ -296,11 +307,11 @@ Cell[BoxData[{
                 RowBox[{"i", "/", "nxy"}], ",", 
                 RowBox[{
                  RowBox[{"(", 
-                  RowBox[{"Ci", "-", "i"}], ")"}], "/", "nxy"}], ",", "M"}], 
-               "}"}], ",", 
+                  RowBox[{"ci", "-", "i"}], ")"}], "/", "nxy"}], ",", 
+                "multiplicity"}], "}"}], ",", 
               RowBox[{"{", 
                RowBox[{"i", ",", "0", ",", 
-                RowBox[{"Ci", "-", "1"}]}], "}"}]}], "]"}]}], "]"}]}], ";", 
+                RowBox[{"ci", "-", "1"}]}], "}"}]}], "]"}]}], "]"}]}], ";", 
          "\[IndentingNewLine]", 
          RowBox[{"neg", "=", 
           RowBox[{"Table", "[", 
@@ -310,11 +321,11 @@ Cell[BoxData[{
               RowBox[{"i", "/", "nxy"}], ",", 
               RowBox[{
                RowBox[{"(", 
-                RowBox[{"Ci", "-", "i", "-", "1"}], ")"}], "/", "nxy"}], ",", 
-              "M"}], "}"}], ",", 
+                RowBox[{"ci", "-", "i", "-", "1"}], ")"}], "/", "nxy"}], ",", 
+              "multiplicity"}], "}"}], ",", 
             RowBox[{"{", 
              RowBox[{"i", ",", "0", ",", 
-              RowBox[{"Ci", "-", "1"}]}], "}"}]}], "]"}]}], ";", 
+              RowBox[{"ci", "-", "1"}]}], "}"}]}], "]"}]}], ";", 
          "\[IndentingNewLine]", 
          RowBox[{"1", "-", 
           RowBox[{
@@ -332,7 +343,7 @@ Cell[BoxData[{
         RowBox[{
          RowBox[{"p", "=", 
           RowBox[{
-           RowBox[{"2", "*", "nxy"}], "-", "Ci"}]}], ";", 
+           RowBox[{"2", "*", "nxy"}], "-", "ci"}]}], ";", 
          "\[IndentingNewLine]", 
          RowBox[{"pos", "=", 
           RowBox[{"Join", "[", 
@@ -341,19 +352,19 @@ Cell[BoxData[{
              RowBox[{"{", 
               RowBox[{"m", ",", "n", ",", "1", ",", 
                RowBox[{
-                RowBox[{"Ci", "/", "nxy"}], "-", "1"}], ",", "M"}], "}"}], 
-             "}"}], ",", 
+                RowBox[{"ci", "/", "nxy"}], "-", "1"}], ",", "multiplicity"}],
+               "}"}], "}"}], ",", 
             RowBox[{"Table", "[", 
              RowBox[{
               RowBox[{"{", 
                RowBox[{"m", ",", "n", ",", 
                 RowBox[{
                  RowBox[{"(", 
-                  RowBox[{"Ci", "-", "nxy", "+", "i"}], ")"}], "/", "nxy"}], ",", 
+                  RowBox[{"ci", "-", "nxy", "+", "i"}], ")"}], "/", "nxy"}], ",", 
                 RowBox[{
                  RowBox[{"(", 
-                  RowBox[{"nxy", "-", "i"}], ")"}], "/", "nxy"}], ",", "M"}], 
-               "}"}], ",", 
+                  RowBox[{"nxy", "-", "i"}], ")"}], "/", "nxy"}], ",", 
+                "multiplicity"}], "}"}], ",", 
               RowBox[{"{", 
                RowBox[{"i", ",", "0", ",", 
                 RowBox[{"p", "-", "1"}]}], "}"}]}], "]"}]}], "]"}]}], ";", 
@@ -365,11 +376,11 @@ Cell[BoxData[{
              RowBox[{"m", ",", "n", ",", 
               RowBox[{
                RowBox[{"(", 
-                RowBox[{"Ci", "-", "nxy", "+", "i"}], ")"}], "/", "nxy"}], ",", 
+                RowBox[{"ci", "-", "nxy", "+", "i"}], ")"}], "/", "nxy"}], ",", 
               RowBox[{
                RowBox[{"(", 
                 RowBox[{"nxy", "-", "i", "-", "1"}], ")"}], "/", "nxy"}], ",",
-               "M"}], "}"}], ",", 
+               "multiplicity"}], "}"}], ",", 
             RowBox[{"{", 
              RowBox[{"i", ",", "0", ",", 
               RowBox[{"p", "-", "1"}]}], "}"}]}], "]"}]}], ";", 
@@ -387,7 +398,7 @@ Cell[BoxData[{
            RowBox[{"Binomial", "[", 
             RowBox[{
              RowBox[{"m", "+", "n"}], ",", "m"}], "]"}]}]}]}]}], "]"}]}]}], 
-    "]"}]}], "\[IndentingNewLine]", "\n"}], "\[IndentingNewLine]", 
+    "]"}]}], "\n", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Kuiper2sample", "[", 
    RowBox[{"data1_List", ",", "data2_List"}], "]"}], ":=", 
@@ -395,8 +406,8 @@ Cell[BoxData[{
    RowBox[{
     RowBox[{"{", 
      RowBox[{
-     "m", ",", "n", ",", "joint", ",", "M", ",", "edf1", ",", "edf2", ",", 
-      "z", ",", "dstat", ",", "pval"}], "}"}], ",", 
+     "m", ",", "n", ",", "joint", ",", "multiplicity", ",", "edf1", ",", 
+      "edf2", ",", "z", ",", "dstat", ",", "pval"}], "}"}], ",", 
     RowBox[{
      RowBox[{"m", "=", 
       RowBox[{"Length", "[", "data1", "]"}]}], ";", 
@@ -407,7 +418,7 @@ Cell[BoxData[{
        RowBox[{"Join", "[", 
         RowBox[{"data1", ",", "data2"}], "]"}], "]"}]}], ";", 
      "\[IndentingNewLine]", 
-     RowBox[{"M", "=", 
+     RowBox[{"multiplicity", "=", 
       RowBox[{"Values", "[", 
        RowBox[{"Counts", "[", "joint", "]"}], "]"}]}], ";", 
      "\[IndentingNewLine]", 
@@ -439,14 +450,14 @@ Cell[BoxData[{
         RowBox[{"-", "z"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
      RowBox[{"pval", "=", 
       RowBox[{"Kuiper2sample", "[", 
-       RowBox[{"m", ",", "n", ",", "M", ",", "dstat"}], "]"}]}], ";", 
-     "\[IndentingNewLine]", 
+       RowBox[{"m", ",", "n", ",", "multiplicity", ",", "dstat"}], "]"}]}], ";",
+      "\[IndentingNewLine]", 
      RowBox[{"{", 
       RowBox[{"dstat", ",", "pval"}], "}"}]}]}], "]"}]}]}], "Input",
  TaggingRules->{},
- CellChangeTimes->{{3.9900245281382008`*^9, 3.990024528139986*^9}},
- CellLabel->"In[1]:=",
- CellID->184251013,ExpressionUUID->"156364e3-9b36-524f-a511-ca36dd062569"]
+ CellChangeTimes->{{3.9900262712872887`*^9, 3.9900262712883472`*^9}},
+ CellLabel->"In[18]:=",
+ CellID->267968477,ExpressionUUID->"d0c91412-b19c-5244-8274-da18209c25f5"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -492,6 +503,7 @@ behavior for that structure. Pressing ",
                 If[$OperatingSystem === "MacOSX", "\[ReturnKey]", 
                  "\[EnterKey]"], StandardForm], SingleEvaluation -> True, 
                Evaluator -> "System"], ShowStringCharacters -> False]]], 
+           
            " repeatedly will create new cases as needed. Every input usage \
 case defined above should be demonstrated explicitly here.\n\nSee existing \
 documentation pages for examples."}], "MoreInfoText"], Background -> 
@@ -573,14 +585,15 @@ Cell[BoxData[
  RowBox[{"Kuiper2sample", "[", 
   RowBox[{
    StyleBox["m", "TI"], ",", 
-   StyleBox["n", "TI"], ",", "M", ",", 
+   StyleBox["n", "TI"], ",", 
    StyleBox["q", "TI"]}], "]"}]], "UsageInputs",
  TaggingRules->{},
  CellChangeTimes->{{3.9900189173579464`*^9, 3.990018939219532*^9}, {
-  3.9900189827977657`*^9, 3.990018986816904*^9}},
+   3.9900189827977657`*^9, 3.990018986816904*^9}, {3.9900254298338146`*^9, 
+   3.990025449536165*^9}, 3.990026180569586*^9},
  FontFamily->"Source Sans Pro",
  CellTags->{"DefaultContent", "TabNext"},
- CellID->367030987,ExpressionUUID->"c42a6460-8558-6e43-812b-d91b6f63ea77"],
+ CellID->61414320,ExpressionUUID->"8c35478a-5353-e348-a00d-ee1f1c647097"],
 
 Cell[TextData[{
  "Returns the exact p-value ",
@@ -591,29 +604,62 @@ Cell[TextData[{
      SubscriptBox["V", 
       RowBox[{"m", "+", "n"}]], "\[GreaterEqual]", 
      StyleBox["q", "TI"]}], ")"}], TraditionalForm]],ExpressionUUID->
-  "dde5c05a-26ae-cf49-b82e-bbc78d3a443c"],
+  "f79e4667-2220-734a-ae9e-a934e766d194"],
  " given sample sizes ",
  Cell[BoxData[
   RowBox[{
    StyleBox["m", "TI"], ",", 
    StyleBox["n", "TI"]}]], "InlineFormula",
   FontFamily->"Source Sans Pro",ExpressionUUID->
-  "62f6d78b-10c6-c642-89f3-e97ea1a4d167"],
- ", multiplicity vector ",
- Cell[BoxData["M"], "InlineFormula",
-  FontFamily->"Source Sans Pro",ExpressionUUID->
-  "a6aa2808-479a-8644-8022-1821ab205815"],
- ", and observed statistic ",
+  "9b85b623-8cd3-cb43-884c-24a209295fa5"],
+ " and observed statistic ",
  Cell[BoxData[
   StyleBox["q", "TI"]], "InlineFormula",
   FontFamily->"Source Sans Pro",ExpressionUUID->
-  "c2896e97-92c5-d644-9005-2a6a20517739"],
+  "b172461f-5c46-6743-a209-ee30e846536b"],
  "."
 }], "UsageDescription",
  TaggingRules->{},
  CellChangeTimes->{{3.9900189240450954`*^9, 3.990018955453808*^9}, {
   3.9900189931012573`*^9, 3.9900189946690807`*^9}, {3.990019428182722*^9, 
-  3.990019433413578*^9}, {3.990020355805475*^9, 3.9900203573292503`*^9}},
+  3.990019433413578*^9}, {3.990020355805475*^9, 3.9900203573292503`*^9}, {
+  3.9900254831211643`*^9, 3.9900254831211643`*^9}, {3.9900262056807537`*^9, 
+  3.9900262099203377`*^9}},
+ CellTags->{"DefaultContent", "TabNext"},
+ CellID->33085349,ExpressionUUID->"4deebeed-a24b-124c-8da2-dcb1d435faad"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Kuiper2sample", "[", 
+  RowBox[{
+   StyleBox["m", "TI"], ",", 
+   StyleBox["n", "TI"], ",", 
+   StyleBox["multiplicity", "TI"], ",", 
+   StyleBox["q", "TI"]}], "]"}]], "UsageInputs",
+ TaggingRules->{},
+ CellChangeTimes->{{3.9900189173579464`*^9, 3.990018939219532*^9}, {
+  3.9900189827977657`*^9, 3.990018986816904*^9}, {3.9900254298338146`*^9, 
+  3.990025449536165*^9}},
+ FontFamily->"Source Sans Pro",
+ CellTags->{"DefaultContent", "TabNext"},
+ CellID->367030987,ExpressionUUID->"c42a6460-8558-6e43-812b-d91b6f63ea77"],
+
+Cell[TextData[{
+ "Uses the multiplicity vector ",
+ Cell[BoxData[
+  StyleBox["multiplicity", "TI"]], "InlineFormula",
+  FontFamily->"Source Sans Pro",ExpressionUUID->
+  "bc8558ba-d8c4-854a-b9aa-4de259162a7b"],
+ " for data with ties."
+}], "UsageDescription",
+ TaggingRules->{},
+ CellChangeTimes->{{3.9900189240450954`*^9, 3.990018955453808*^9}, {
+  3.9900189931012573`*^9, 3.9900189946690807`*^9}, {3.990019428182722*^9, 
+  3.990019433413578*^9}, {3.990020355805475*^9, 3.9900203573292503`*^9}, {
+  3.9900254831211643`*^9, 3.9900254831211643`*^9}, {3.9900262164291553`*^9, 
+  3.9900262197423096`*^9}},
  CellTags->{"DefaultContent", "TabNext"},
  CellID->765416180,ExpressionUUID->"bcb06a69-fd16-d94b-8826-ba89315ca3c9"]
 }, Open  ]]
@@ -909,24 +955,21 @@ p-value. The low-level form Kuiper2sample[",
  CellID->124384718,ExpressionUUID->"0cee6a25-cf40-c847-8c1a-fc96a7cf0021"],
 
 Cell[TextData[{
- " In the low-level form, ",
- Cell[BoxData["M"], "InlineFormula",
-  FontFamily->"Source Sans Pro",ExpressionUUID->
-  "7994be24-fccf-9642-ab90-0d5596753ecf"],
- " is an integer list of length k (number of distinct pooled-sample values) \
-with ",
+ "In the low-level form, ",
  Cell[BoxData[
-  RowBox[{"M", "[", 
+  StyleBox["multiplicity", "TI"]], "InlineFormula",
+  FontFamily->"Source Sans Pro",ExpressionUUID->
+  "6bf9c9b8-7349-5442-988d-702aff82e0ea"],
+ " is an integer list of length k (the number of distinct values in the \
+pooled sample) where ",
+ Cell[BoxData[
+  RowBox[{
+   StyleBox["multiplicity", "TI"], "[", 
    RowBox[{"[", 
     StyleBox["i", "TI"], "]"}], "]"}]], "InlineFormula",
   FontFamily->"Source Sans Pro",ExpressionUUID->
-  "49a587ff-355c-6c46-b096-aebfb22728e5"],
- " the count of the ",
- Cell[BoxData[
-  StyleBox["i", "TI"]], "InlineFormula",
-  FontFamily->"Source Sans Pro",ExpressionUUID->
-  "adeb47a2-f8fe-4c44-af57-9dcbb83b5108"],
- "-th distinct value; ",
+  "5bf0b804-993f-9049-8016-6e2979ea640f"],
+ " is the number of times the i-th distinct pooled-sample value appears; ",
  Cell[BoxData[
   RowBox[{
    TagBox[
@@ -940,26 +983,51 @@ with ",
         "Link", FontColor -> RGBColor[0.8549, 0.39608, 0.1451]}, {"Link"}]],
      ButtonData->"paclet:ref/Total",
      ContentPadding->False],
-    MouseAppearanceTag["LinkHand"]], "[", "M", "]"}]], "InlineFormula",
+    MouseAppearanceTag["LinkHand"]], "[", 
+   StyleBox["multiplicity", "TI"], "]"}]], "InlineFormula",
   FontFamily->"Source Sans Pro",ExpressionUUID->
-  "2102a529-5a81-3247-bf99-0b682a827692"],
+  "0ddc9660-cc9b-4f45-b3d1-c7a588fbb5ff"],
  " must equal ",
  Cell[BoxData[
   RowBox[{
    StyleBox["m", "TI"], "+", 
    StyleBox["n", "TI"]}]], "InlineFormula",
   FontFamily->"Source Sans Pro",ExpressionUUID->
-  "9379c414-4974-ae42-8902-f9bbab957346"],
+  "f9d2f557-f232-344f-9201-e354004abce6"],
+ ". When there are no ties, ",
+ Cell[BoxData[
+  RowBox[{
+   StyleBox["multiplicity", "TI"], "=", 
+   RowBox[{
+    TagBox[
+     ButtonBox[
+      StyleBox["ConstantArray", "SymbolsRefLink",
+       ShowStringCharacters->True,
+       FontFamily->"Source Sans Pro"],
+      BaseStyle->Dynamic[
+        FEPrivate`If[
+         CurrentValue["MouseOver"], {
+         "Link", FontColor -> RGBColor[0.8549, 0.39608, 0.1451]}, {"Link"}]],
+      ButtonData->"paclet:ref/ConstantArray",
+      ContentPadding->False],
+     MouseAppearanceTag["LinkHand"]], "[", 
+    RowBox[{"1", ",", 
+     RowBox[{
+      StyleBox["m", "TI"], "+", 
+      StyleBox["n", "TI"]}]}], "]"}]}]], "InlineFormula",
+  FontFamily->"Source Sans Pro",ExpressionUUID->
+  "549aa76a-20e7-4b44-aca7-d131a948e910"],
  ". ",
  Cell[BoxData[
   StyleBox["q", "TI"]], "InlineFormula",
   FontFamily->"Source Sans Pro",ExpressionUUID->
-  "a8decfa3-afe7-b84c-8f34-c611b4f503d6"],
+  "97662219-73de-9242-a3c8-3e2e4374e116"],
  " must lie in [0, 2]."
 }], "Notes",
  TaggingRules->{},
  CellChangeTimes->{{3.990019035708292*^9, 3.9900190395801697`*^9}, {
-  3.9900194711535816`*^9, 3.99001948802516*^9}},
+  3.9900194711535816`*^9, 3.99001948802516*^9}, {3.9900254913541203`*^9, 
+  3.9900255314576683`*^9}},
  CellID->64091601,ExpressionUUID->"b3296897-ab55-cc41-9102-258622cb759e"],
 
 Cell[TextData[{
@@ -1309,6 +1377,32 @@ Cell[CellGroupData[{
 
 Cell[BoxData[
  RowBox[{"Kuiper2sample", "[", 
+  RowBox[{"5", ",", "6", ",", 
+   RowBox[{"1", "/", "2"}]}], "]"}]], "Input",
+ TaggingRules->{},
+ CellChangeTimes->{
+  3.9900190973819656`*^9, 3.9900191294537544`*^9, 3.9900262543055058`*^9, {
+   3.990026292962101*^9, 3.990026324161169*^9}, {3.9900263810972633`*^9, 
+   3.9900264244584026`*^9}, {3.990026459257227*^9, 3.9900264651217213`*^9}},
+ CellTags->"DefaultContent",
+ CellLabel->"In[37]:=",
+ CellID->28684353,ExpressionUUID->"9c64d235-dd8a-4144-be8b-44a6d9e64b42"],
+
+Cell[BoxData[
+ FractionBox["17", "21"]], "Output",
+ TaggingRules->{},
+ CellChangeTimes->{{3.9900262563773003`*^9, 3.990026325314501*^9}, {
+  3.990026383564966*^9, 3.9900264258961487`*^9}, {3.9900264618508472`*^9, 
+  3.9900264829520226`*^9}},
+ CellTags->"DefaultContent",
+ CellLabel->"Out[37]=",
+ CellID->222649250,ExpressionUUID->"e2942be7-a53b-6041-9415-86c61559771a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Kuiper2sample", "[", 
   RowBox[{"120", ",", "150", ",", 
    RowBox[{"{", 
     RowBox[{"80", ",", "70", ",", "40", ",", "80"}], "}"}], ",", 
@@ -1316,7 +1410,7 @@ Cell[BoxData[
  TaggingRules->{},
  CellChangeTimes->{3.9900190973819656`*^9, 3.9900191294537544`*^9},
  CellTags->"DefaultContent",
- CellLabel->"In[5]:=",
+ CellLabel->"In[23]:=",
  CellID->667622465,ExpressionUUID->"a99ac713-abe6-b646-ac6a-90d76bb0539d"],
 
 Cell[BoxData[
@@ -1324,10 +1418,11 @@ Cell[BoxData[
 ", "/", "335076234566710940819740328406731722198100028483778035973477717524433\
 5"}]], "Output",
  TaggingRules->{},
- CellChangeTimes->{3.990019099190136*^9, 3.990019131513586*^9},
+ CellChangeTimes->{3.990019099190136*^9, 3.990019131513586*^9, 
+  3.9900262863721027`*^9},
  CellTags->"DefaultContent",
- CellLabel->"Out[5]=",
- CellID->427238195,ExpressionUUID->"30387e5b-91d9-d648-9ec2-fe18d902efa4"]
+ CellLabel->"Out[23]=",
+ CellID->156547269,ExpressionUUID->"f6f80bf0-794f-6e4a-8681-0801f0c950e0"]
 }, Open  ]]
 }, Open  ]],
 
@@ -1453,11 +1548,6 @@ Cell[BoxData[
  CellID->216959867,ExpressionUUID->"7c31414a-ea1d-a94b-bb7b-34ab72af28b6"]
 }, Open  ]]
 }, Open  ]],
-
-Cell["Options", "Subsection",
- TaggingRules->{},
- CellTags->"DefaultContent",
- CellID->879773335,ExpressionUUID->"5b64271a-7709-bb41-9afc-8e024e971fa6"],
 
 Cell[CellGroupData[{
 
@@ -2141,6 +2231,8 @@ cSNcOTFSvkJFJZyIPzCZUpw1sqz7RVJO9vgbTIIcelUM5e9AdRHV/Q="},
  CellID->53119426,ExpressionUUID->"af2dedfd-2868-5f4f-8b08-727b7047ca6c"]
 }, Open  ]],
 
+Cell[CellGroupData[{
+
 Cell[TextData[{
  "Related Symbols",
  Cell[BoxData[
@@ -2169,6 +2261,33 @@ related to the function.", "MoreInfoText"], Background -> GrayLevel[0.95],
  DefaultNewCellStyle->{"RelatedSymbol", FontFamily -> "Source Sans Pro"},
  CellTags->{"Related Symbols", "TemplateCellGroup"},
  CellID->467106741,ExpressionUUID->"c937ff03-008e-a14b-a7ed-d6be483671a5"],
+
+Cell["KuiperTest", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.990012196234005*^9, 3.9900122003676777`*^9}, 
+   3.9900122425755157`*^9, 3.9900270098886375`*^9, 3.9900273528086452`*^9},
+ CellTags->{"DefaultContent", "TabNext"},
+ CellID->887703928,ExpressionUUID->"a40967d3-884f-594c-a26f-1e83cf154da4"],
+
+Cell["EmpiricalDistribution", "Item",
+ TaggingRules->{},
+ CellEventActions->{Inherited, {"KeyDown", "\t"} :> Replace[SelectionMove[
+       SelectedNotebook[], After, Cell]; NotebookFind[
+       SelectedNotebook[], "TabNext", Next, CellTags, AutoScroll -> True, 
+       WrapAround -> True], Blank[NotebookSelection] :> SelectionMove[
+       SelectedNotebook[], All, CellContents, AutoScroll -> True]], 
+   PassEventsDown -> False, PassEventsUp -> False},
+ CellChangeTimes->{{3.990012196234005*^9, 3.9900122003676777`*^9}, 
+   3.9900122425755157`*^9, {3.9900270098886375`*^9, 3.9900270253602085`*^9}},
+ CellTags->{"DefaultContent", "TabNext"},
+ CellID->337965592,ExpressionUUID->"961a62a7-7fb8-274e-a6d8-7f75b1a6035d"]
+}, Open  ]],
 
 Cell[TextData[{
  "Related Resource Objects",
@@ -2889,8 +3008,8 @@ Cell[BoxData[
                     FrameMargins -> 0], Short[#, 
                     Rational[2, 3]]& ], ImageSize -> {{1, 500}, Automatic}, 
                    BaselinePosition -> Baseline, ContentPadding -> False, 
-                   FrameMargins -> 0, StripOnInput -> True], "SummaryItem"]}]}
-              , {
+                   FrameMargins -> 0, StripOnInput -> True], 
+                  "SummaryItem"]}]}, {
                RowBox[{
                  TagBox["\"Expected output: \"", "SummaryItemAnnotation"], 
                  "\[InvisibleSpace]", 
@@ -3565,6 +3684,7 @@ Cell[BoxData[
          TemplateBox[{
            CheckboxBox["WebEvaluation", {False, "WebEvaluation"}], "\" \"", 
            StyleBox[
+            
             TemplateBox[{
              "\"WebEvaluation\"", 
               "\"Cloud evaluation initiated by an HTTP request\""}, 
@@ -3947,8 +4067,8 @@ Journal of Statistical Computation and Simulation.\
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{1280, Automatic},
-WindowMargins->{{-5.5, Automatic}, {Automatic, -5.5}},
+WindowSize->{638, 721},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
 DockedCells->{
   Cell[
    BoxData[
@@ -3986,8 +4106,8 @@ DockedCells->{
                     DateString[
                     TimeZoneConvert[
                     DateObject[
-                    3.9900245633485749`17.3535505584542*^9, TimeZone -> 0]], {
-                    "MonthName", " ", "DayShort", ", ", "Year", " ", 
+                    3.9900265888481238`17.35355077891977*^9, TimeZone -> 
+                    0]], {"MonthName", " ", "DayShort", ", ", "Year", " ", 
                     "Hour12Short", ":", "Minute", " ", "AMPMLowerCase"}], 
                     StandardForm], SingleEvaluation -> True, Evaluator -> 
                     "System"], FontSlant -> Italic, FontColor -> 
@@ -4010,8 +4130,8 @@ DockedCells->{
                     DateString[
                     TimeZoneConvert[
                     DateObject[
-                    3.9900245633485749`17.3535505584542*^9, TimeZone -> 0]], {
-                    "MonthName", " ", "DayShort", ", ", "Year", " ", 
+                    3.9900265888481238`17.35355077891977*^9, TimeZone -> 
+                    0]], {"MonthName", " ", "DayShort", ", ", "Year", " ", 
                     "Hour12Short", ":", "Minute", " ", "AMPMLowerCase"}], 
                     StandardForm], SingleEvaluation -> True, Evaluator -> 
                     "System"], FontSlant -> Italic, FontColor -> 
@@ -4036,8 +4156,8 @@ DockedCells->{
                    DateString[
                     TimeZoneConvert[
                     DateObject[
-                    3.9900245633485749`17.3535505584542*^9, TimeZone -> 0]], {
-                    "MonthName", " ", "DayShort", ", ", "Year", " ", 
+                    3.9900265888481238`17.35355077891977*^9, TimeZone -> 
+                    0]], {"MonthName", " ", "DayShort", ", ", "Year", " ", 
                     "Hour12Short", ":", "Minute", " ", "AMPMLowerCase"}], 
                    SingleEvaluation -> True, Evaluator -> "System"], 
                   FontSlant -> Italic, FontColor -> GrayLevel[0.5], FontSize -> 
@@ -4050,7 +4170,7 @@ DockedCells->{
               DateString[
                TimeZoneConvert[
                 DateObject[
-                3.9900245633485749`17.3535505584542*^9, TimeZone -> 0]], {
+                3.9900265888481238`17.35355077891977*^9, TimeZone -> 0]], {
                "MonthName", " ", "DayShort", ", ", "Year", " ", "Hour12Short",
                  ":", "Minute", " ", "AMPMLowerCase"}], StandardForm], 
              SingleEvaluation -> True, Evaluator -> "System"], FontSlant -> 
@@ -4059,9 +4179,18 @@ DockedCells->{
          "\"   \"", 
          ItemBox[
           StyleBox[
-          "\"Found 12 suggestions\"", LineBreakWithin -> Automatic, 
-           LineIndent -> 0, StripOnInput -> False], ItemSize -> Fit, 
-          StripOnInput -> False], "", 
+           TagBox[
+            GridBox[{{
+               StyleBox["\"\[Checkmark]\"", FontColor -> RGBColor[0, 
+                  Rational[2, 3], 0], FontSize -> 16, FontWeight -> "Heavy", 
+                StripOnInput -> False], "\"No issues found\""}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Center}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{0.5}}}], "Grid"], 
+           LineBreakWithin -> Automatic, LineIndent -> 0, StripOnInput -> 
+           False], ItemSize -> Fit, StripOnInput -> False], "\"\"", 
          TagBox[
           ButtonBox[
            TagBox[
@@ -4125,563 +4254,8 @@ DockedCells->{
                  Not[
                   FreeQ[
                   DefinitionNotebookClient`Stripes`PackagePrivate`c$, 
-                   "650c5b6a-0301-4b6d-a082-d316cbc345f7"]]]]]], Appearance -> 
-           None, BoxID -> "650c5b6a-0301-4b6d-a082-d316cbc345f7", Evaluator -> 
-           Automatic, Method -> "Preemptive"], 
-          MouseAppearanceTag["LinkHand"]]}}, 
-       GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Baseline}}}, 
-       AutoDelete -> False, 
-       GridBoxItemSize -> {
-        "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], "Grid"], 
-     "Text", FontSize -> 12, FontColor -> GrayLevel[0.25], StripOnInput -> 
-     False]], "StripeCell", CellFrameMargins -> {{20, 5}, {2, 2}}, 
-   CellFrame -> {{0, 0}, {1, 0}}, CellFrameColor -> GrayLevel[0.75]], 
-  Cell[
-   BoxData[
-    StyleBox[
-     TagBox[
-      GridBox[{{
-         OverlayBox[{
-           StyleBox[
-            TagBox[
-             DynamicModuleBox[{Typeset`var$$ = False}, 
-              InterpretationBox[
-               StyleBox[
-                PaneSelectorBox[{False -> GridBox[{{
-                    OpenerBox[
-                    Dynamic[Typeset`var$$], Appearance -> Automatic, Enabled -> 
-                    Automatic, AutoAction -> False, ContinuousAction -> 
-                    False], 
-                    StyleBox[
-                    DynamicBox[
-                    ToBoxes[
-                    DateString[
-                    TimeZoneConvert[
-                    DateObject[
-                    3.990024574672736`17.353550559686777*^9, TimeZone -> 
-                    0]], {"MonthName", " ", "DayShort", ", ", "Year", " ", 
-                    "Hour12Short", ":", "Minute", " ", "AMPMLowerCase"}], 
-                    StandardForm], SingleEvaluation -> True, Evaluator -> 
-                    "System"], FontSlant -> Italic, FontColor -> 
-                    GrayLevel[0.5], FontSize -> 0.9 Inherited, StripOnInput -> 
-                    False]}}, GridBoxAlignment -> {"Columns" -> {{Left}}}, 
-                    AutoDelete -> False, 
-                    GridBoxBackground -> {"Columns" -> {{Automatic}}}, 
-                    GridBoxItemSize -> {
-                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
-                    GridBoxSpacings -> {
-                    "Columns" -> {{0.2}}, "Rows" -> {{0.5}}}, 
-                    BaselinePosition -> {1, 1}], True -> GridBox[{{
-                    OpenerBox[
-                    Dynamic[Typeset`var$$], Appearance -> Automatic, Enabled -> 
-                    Automatic, AutoAction -> False, ContinuousAction -> 
-                    False], 
-                    StyleBox[
-                    DynamicBox[
-                    ToBoxes[
-                    DateString[
-                    TimeZoneConvert[
-                    DateObject[
-                    3.990024574672736`17.353550559686777*^9, TimeZone -> 
-                    0]], {"MonthName", " ", "DayShort", ", ", "Year", " ", 
-                    "Hour12Short", ":", "Minute", " ", "AMPMLowerCase"}], 
-                    StandardForm], SingleEvaluation -> True, Evaluator -> 
-                    "System"], FontSlant -> Italic, FontColor -> 
-                    GrayLevel[0.5], FontSize -> 0.9 Inherited, StripOnInput -> 
-                    False]}, {"", 
-                    PaneBox["\"\"", ImageMargins -> 0]}}, 
-                    GridBoxAlignment -> {"Columns" -> {{Left}}}, AutoDelete -> 
-                    False, GridBoxBackground -> {"Columns" -> {{Automatic}}}, 
-                    GridBoxItemSize -> {
-                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
-                    GridBoxSpacings -> {
-                    "Columns" -> {{0.2}}, "Rows" -> {{0.5}}}, 
-                    BaselinePosition -> {1, 1}]}, 
-                 Dynamic[
-                  TrueQ[Typeset`var$$]], Alignment -> Automatic, ImageSize -> 
-                 Automatic, ImageMargins -> 0, BaseStyle -> {}, 
-                 DefaultBaseStyle -> "OpenerView", BaselinePosition -> 
-                 Baseline], Deployed -> False, StripOnInput -> False], 
-               OpenerView[{
-                 Style[
-                  Dynamic[
-                   DateString[
-                    TimeZoneConvert[
-                    DateObject[
-                    3.990024574672736`17.353550559686777*^9, TimeZone -> 
-                    0]], {"MonthName", " ", "DayShort", ", ", "Year", " ", 
-                    "Hour12Short", ":", "Minute", " ", "AMPMLowerCase"}], 
-                   SingleEvaluation -> True, Evaluator -> "System"], 
-                  FontSlant -> Italic, FontColor -> GrayLevel[0.5], FontSize -> 
-                  0.9 Inherited], ""}, False]], DynamicModuleValues -> 
-              Automatic], Setting[#, {0}]& ], ShowContents -> False, 
-            StripOnInput -> False], 
-           StyleBox[
-            DynamicBox[
-             ToBoxes[
-              DateString[
-               TimeZoneConvert[
-                DateObject[
-                3.990024574672736`17.353550559686777*^9, TimeZone -> 0]], {
-               "MonthName", " ", "DayShort", ", ", "Year", " ", "Hour12Short",
-                 ":", "Minute", " ", "AMPMLowerCase"}], StandardForm], 
-             SingleEvaluation -> True, Evaluator -> "System"], FontSlant -> 
-            Italic, FontColor -> GrayLevel[0.5], FontSize -> 0.9 Inherited, 
-            StripOnInput -> False]}, Alignment -> {Right, Baseline}], 
-         "\"   \"", 
-         ItemBox[
-          StyleBox[
-          "\"Found 12 suggestions\"", LineBreakWithin -> Automatic, 
-           LineIndent -> 0, StripOnInput -> False], ItemSize -> Fit, 
-          StripOnInput -> False], 
-         StyleBox[
-          ActionMenuBox[
-           FrameBox[
-            TemplateBox[{
-              TagBox[
-               GridBox[{{
-                  TemplateBox[{
-                    TemplateBox[{
-                    PaneBox[
-                    TemplateBox[{
-                    RGBColor[
-                    0.49019607843137253`, 0.49019607843137253`, 
-                    0.49019607843137253`]}, "HintPodIconHint"], 
-                    ImageSize -> {12, 12}, ImageSizeAction -> "ShrinkToFit", 
-                    BaselinePosition -> Scaled[0.1]], 
-                    TemplateBox[{1}, "Spacer1"], 
-                    StyleBox[
-                    "12", FontSize -> 14, FontWeight -> Plain, FontColor -> 
-                    GrayLevel[0.25], FontFamily -> "Source Sans Pro", 
-                    StripOnInput -> False]}, "RowDefault"], 
-                    "\"Suggestions found\""}, "PrettyTooltipTemplate"]}}, 
-                AutoDelete -> False, 
-                GridBoxItemSize -> {
-                 "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], 
-               "Grid"], 
-              GraphicsBox[{
-                GrayLevel[0.4], 
-                AbsoluteThickness[2], 
-                CapForm["Round"], 
-                LineBox[{{-1, 0}, {0, -1}, {1, 0}}]}, {
-               ImageSize -> {13, 9}, BaselinePosition -> Scaled[0.2], 
-                ImagePadding -> {{3, 3}, {3, 3}}, AspectRatio -> Full}]}, 
-             "RowDefault"], DefaultBaseStyle -> "HighlightedInput", 
-            StripOnInput -> False, ImageSize -> {Automatic, 19}, 
-            BaselinePosition -> Baseline, Background -> GrayLevel[1], 
-            FrameStyle -> Dynamic[
-              If[
-               CurrentValue["MouseOver"], 
-               Hue[0.55, 0.82, 0.87], 
-               GrayLevel[0.8]]], FrameMargins -> {{4, 4}, {1, 1}}, 
-            Alignment -> {Center, Baseline}], {TemplateBox[{
-               PaneBox[
-                TemplateBox[{
-                  RGBColor[
-                  0.49019607843137253`, 0.49019607843137253`, 
-                   0.49019607843137253`]}, "HintPodIconHint"], 
-                ImageSize -> {10, 10}, ImageSizeAction -> "ShrinkToFit", 
-                BaselinePosition -> Scaled[0.1]], "\" \"", 
-               "\"Code Issue: Suspicious uppercase symbol as pattern: M\""}, 
-              "RowDefault"] :> DefinitionNotebookClient`WithCurrentNotebook[
-              EvaluationNotebook[], 
-              DefinitionNotebookClient`LoadDefinitionNotebook[
-               "Function", DefinitionNotebookClient`$CurrentNotebook]; 
-              DefinitionNotebookClient`PackageScope`setHint[
-               "Suggestion", "Function", 
-                DefinitionNotebookClient`$CurrentNotebook, 
-                "bc0cbccb-285d-4224-a481-7fa9157cd347", 184251013, 
-                "CodeInspectionIssue/UppercasePattern", <|
-                "Message" -> 
-                 "Code Issue: Suspicious uppercase symbol as pattern: M", 
-                 "SourceInformation" -> 
-                 CodeInspector`InspectionObject[
-                  "UppercasePattern", 
-                   "Suspicious uppercase symbol as pattern: M", "Remark", <|
-                   CodeParser`Source -> {1, 1, 1, 1, 1, 1, 3, 1, 9}, 
-                    ConfidenceLevel -> 0.8|>], "File" -> None, "Hash" -> 
-                 8944590669503204313, "Position" -> ""|>]; 
-              DefinitionNotebookClient`PackageScope`seekAfter[184251013]; 
-              Null], TemplateBox[{
-               PaneBox[
-                TemplateBox[{
-                  RGBColor[
-                  0.49019607843137253`, 0.49019607843137253`, 
-                   0.49019607843137253`]}, "HintPodIconHint"], 
-                ImageSize -> {10, 10}, ImageSizeAction -> "ShrinkToFit", 
-                BaselinePosition -> Scaled[0.1]], "\" \"", 
-               "\"Code Issue: Suspicious uppercase symbol as pattern: M\""}, 
-              "RowDefault"] :> DefinitionNotebookClient`WithCurrentNotebook[
-              EvaluationNotebook[], 
-              DefinitionNotebookClient`LoadDefinitionNotebook[
-               "Function", DefinitionNotebookClient`$CurrentNotebook]; 
-              DefinitionNotebookClient`PackageScope`setHint[
-               "Suggestion", "Function", 
-                DefinitionNotebookClient`$CurrentNotebook, 
-                "16f33688-55e7-4ea3-82b4-6759c590b278", 184251013, 
-                "CodeInspectionIssue/UppercasePattern", <|
-                "Message" -> 
-                 "Code Issue: Suspicious uppercase symbol as pattern: M", 
-                 "SourceInformation" -> 
-                 CodeInspector`InspectionObject[
-                  "UppercasePattern", 
-                   "Suspicious uppercase symbol as pattern: M", "Remark", <|
-                   CodeParser`Source -> {3, 1, 1, 1, 1, 1, 3, 1, 5}, 
-                    ConfidenceLevel -> 0.8|>], "File" -> None, "Hash" -> 
-                 8944590669503204313, "Position" -> ""|>]; 
-              DefinitionNotebookClient`PackageScope`seekAfter[184251013]; 
-              Null], TemplateBox[{
-               PaneBox[
-                TemplateBox[{
-                  RGBColor[
-                  0.49019607843137253`, 0.49019607843137253`, 
-                   0.49019607843137253`]}, "HintPodIconHint"], 
-                ImageSize -> {10, 10}, ImageSizeAction -> "ShrinkToFit", 
-                BaselinePosition -> Scaled[0.1]], "\" \"", 
-               "\"Code Issue: Suspicious uppercase symbol as variable: \
-DEVIATDOWN\""}, "RowDefault"] :> DefinitionNotebookClient`WithCurrentNotebook[
-              EvaluationNotebook[], 
-              DefinitionNotebookClient`LoadDefinitionNotebook[
-               "Function", DefinitionNotebookClient`$CurrentNotebook]; 
-              DefinitionNotebookClient`PackageScope`setHint[
-               "Suggestion", "Function", 
-                DefinitionNotebookClient`$CurrentNotebook, 
-                "252f315d-08c3-497f-b202-fb7180771b56", 184251013, 
-                "CodeInspectionIssue/UppercaseVariable", <|
-                "Message" -> 
-                 "Code Issue: Suspicious uppercase symbol as variable: \
-DEVIATDOWN", "SourceInformation" -> 
-                 CodeInspector`InspectionObject[
-                  "UppercaseVariable", 
-                   "Suspicious uppercase symbol as variable: DEVIATDOWN", 
-                   "Remark", <|
-                   CodeParser`Source -> {1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 2, 1, 
-                    11}, ConfidenceLevel -> 0.8|>], "File" -> None, "Hash" -> 
-                 8944590669503204313, "Position" -> ""|>]; 
-              DefinitionNotebookClient`PackageScope`seekAfter[184251013]; 
-              Null], TemplateBox[{
-               PaneBox[
-                TemplateBox[{
-                  RGBColor[
-                  0.49019607843137253`, 0.49019607843137253`, 
-                   0.49019607843137253`]}, "HintPodIconHint"], 
-                ImageSize -> {10, 10}, ImageSizeAction -> "ShrinkToFit", 
-                BaselinePosition -> Scaled[0.1]], "\" \"", 
-               "\"Code Issue: Suspicious uppercase symbol as variable: \
-DEVIATUP\""}, "RowDefault"] :> DefinitionNotebookClient`WithCurrentNotebook[
-              EvaluationNotebook[], 
-              DefinitionNotebookClient`LoadDefinitionNotebook[
-               "Function", DefinitionNotebookClient`$CurrentNotebook]; 
-              DefinitionNotebookClient`PackageScope`setHint[
-               "Suggestion", "Function", 
-                DefinitionNotebookClient`$CurrentNotebook, 
-                "da1b950a-255b-46a0-8bbb-e1213721e5a2", 184251013, 
-                "CodeInspectionIssue/UppercaseVariable", <|
-                "Message" -> 
-                 "Code Issue: Suspicious uppercase symbol as variable: \
-DEVIATUP", "SourceInformation" -> 
-                 CodeInspector`InspectionObject[
-                  "UppercaseVariable", 
-                   "Suspicious uppercase symbol as variable: DEVIATUP", 
-                   "Remark", <|
-                   CodeParser`Source -> {1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 2, 1, 
-                    9}, ConfidenceLevel -> 0.8|>], "File" -> None, "Hash" -> 
-                 8944590669503204313, "Position" -> ""|>]; 
-              DefinitionNotebookClient`PackageScope`seekAfter[184251013]; 
-              Null], TemplateBox[{
-               PaneBox[
-                TemplateBox[{
-                  RGBColor[
-                  0.49019607843137253`, 0.49019607843137253`, 
-                   0.49019607843137253`]}, "HintPodIconHint"], 
-                ImageSize -> {10, 10}, ImageSizeAction -> "ShrinkToFit", 
-                BaselinePosition -> Scaled[0.1]], "\" \"", 
-               "\"Code Issue: Suspicious uppercase symbol as variable: \
-ICAT\""}, "RowDefault"] :> DefinitionNotebookClient`WithCurrentNotebook[
-              EvaluationNotebook[], 
-              DefinitionNotebookClient`LoadDefinitionNotebook[
-               "Function", DefinitionNotebookClient`$CurrentNotebook]; 
-              DefinitionNotebookClient`PackageScope`setHint[
-               "Suggestion", "Function", 
-                DefinitionNotebookClient`$CurrentNotebook, 
-                "2b6607f6-7307-4765-9212-7502e1a3e391", 184251013, 
-                "CodeInspectionIssue/UppercaseVariable", <|
-                "Message" -> 
-                 "Code Issue: Suspicious uppercase symbol as variable: ICAT", 
-                 "SourceInformation" -> 
-                 CodeInspector`InspectionObject[
-                  "UppercaseVariable", 
-                   "Suspicious uppercase symbol as variable: ICAT", 
-                   "Remark", <|
-                   CodeParser`Source -> {1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 2, 1, 
-                    13}, ConfidenceLevel -> 0.8|>], "File" -> None, "Hash" -> 
-                 8944590669503204313, "Position" -> ""|>]; 
-              DefinitionNotebookClient`PackageScope`seekAfter[184251013]; 
-              Null], TemplateBox[{
-               PaneBox[
-                TemplateBox[{
-                  RGBColor[
-                  0.49019607843137253`, 0.49019607843137253`, 
-                   0.49019607843137253`]}, "HintPodIconHint"], 
-                ImageSize -> {10, 10}, ImageSizeAction -> "ShrinkToFit", 
-                BaselinePosition -> Scaled[0.1]], "\" \"", 
-               "\"Code Issue: Suspicious uppercase symbol as variable: \
-ILE\""}, "RowDefault"] :> DefinitionNotebookClient`WithCurrentNotebook[
-              EvaluationNotebook[], 
-              DefinitionNotebookClient`LoadDefinitionNotebook[
-               "Function", DefinitionNotebookClient`$CurrentNotebook]; 
-              DefinitionNotebookClient`PackageScope`setHint[
-               "Suggestion", "Function", 
-                DefinitionNotebookClient`$CurrentNotebook, 
-                "0c7c49db-6f1b-4a0b-8760-6dc7aa054247", 184251013, 
-                "CodeInspectionIssue/UppercaseVariable", <|
-                "Message" -> 
-                 "Code Issue: Suspicious uppercase symbol as variable: ILE", 
-                 "SourceInformation" -> 
-                 CodeInspector`InspectionObject[
-                  "UppercaseVariable", 
-                   "Suspicious uppercase symbol as variable: ILE", "Remark", <|
-                   CodeParser`Source -> {1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 2, 1, 
-                    17}, ConfidenceLevel -> 0.8|>], "File" -> None, "Hash" -> 
-                 8944590669503204313, "Position" -> ""|>]; 
-              DefinitionNotebookClient`PackageScope`seekAfter[184251013]; 
-              Null], TemplateBox[{
-               PaneBox[
-                TemplateBox[{
-                  RGBColor[
-                  0.49019607843137253`, 0.49019607843137253`, 
-                   0.49019607843137253`]}, "HintPodIconHint"], 
-                ImageSize -> {10, 10}, ImageSizeAction -> "ShrinkToFit", 
-                BaselinePosition -> Scaled[0.1]], "\" \"", 
-               "\"Code Issue: Suspicious uppercase symbol as variable: \
-IRI\""}, "RowDefault"] :> DefinitionNotebookClient`WithCurrentNotebook[
-              EvaluationNotebook[], 
-              DefinitionNotebookClient`LoadDefinitionNotebook[
-               "Function", DefinitionNotebookClient`$CurrentNotebook]; 
-              DefinitionNotebookClient`PackageScope`setHint[
-               "Suggestion", "Function", 
-                DefinitionNotebookClient`$CurrentNotebook, 
-                "909fa211-abc8-4868-928b-745419c6549c", 184251013, 
-                "CodeInspectionIssue/UppercaseVariable", <|
-                "Message" -> 
-                 "Code Issue: Suspicious uppercase symbol as variable: IRI", 
-                 "SourceInformation" -> 
-                 CodeInspector`InspectionObject[
-                  "UppercaseVariable", 
-                   "Suspicious uppercase symbol as variable: IRI", "Remark", <|
-                   CodeParser`Source -> {1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 2, 1, 
-                    19}, ConfidenceLevel -> 0.8|>], "File" -> None, "Hash" -> 
-                 8944590669503204313, "Position" -> ""|>]; 
-              DefinitionNotebookClient`PackageScope`seekAfter[184251013]; 
-              Null], TemplateBox[{
-               PaneBox[
-                TemplateBox[{
-                  RGBColor[
-                  0.49019607843137253`, 0.49019607843137253`, 
-                   0.49019607843137253`]}, "HintPodIconHint"], 
-                ImageSize -> {10, 10}, ImageSizeAction -> "ShrinkToFit", 
-                BaselinePosition -> Scaled[0.1]], "\" \"", 
-               "\"Code Issue: Suspicious uppercase symbol as variable: Ni\""},
-               "RowDefault"] :> DefinitionNotebookClient`WithCurrentNotebook[
-              EvaluationNotebook[], 
-              DefinitionNotebookClient`LoadDefinitionNotebook[
-               "Function", DefinitionNotebookClient`$CurrentNotebook]; 
-              DefinitionNotebookClient`PackageScope`setHint[
-               "Suggestion", "Function", 
-                DefinitionNotebookClient`$CurrentNotebook, 
-                "66e845a6-758e-41f4-ab57-95641e3ae361", 184251013, 
-                "CodeInspectionIssue/UppercaseVariable", <|
-                "Message" -> 
-                 "Code Issue: Suspicious uppercase symbol as variable: Ni", 
-                 "SourceInformation" -> 
-                 CodeInspector`InspectionObject[
-                  "UppercaseVariable", 
-                   "Suspicious uppercase symbol as variable: Ni", "Remark", <|
-                   CodeParser`Source -> {1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 2, 1, 
-                    5}, ConfidenceLevel -> 0.8|>], "File" -> None, "Hash" -> 
-                 8944590669503204313, "Position" -> ""|>]; 
-              DefinitionNotebookClient`PackageScope`seekAfter[184251013]; 
-              Null], TemplateBox[{
-               PaneBox[
-                TemplateBox[{
-                  RGBColor[
-                  0.49019607843137253`, 0.49019607843137253`, 
-                   0.49019607843137253`]}, "HintPodIconHint"], 
-                ImageSize -> {10, 10}, ImageSizeAction -> "ShrinkToFit", 
-                BaselinePosition -> Scaled[0.1]], "\" \"", 
-               "\"Code Issue: Suspicious uppercase symbol as variable: \
-NTIES\""}, "RowDefault"] :> DefinitionNotebookClient`WithCurrentNotebook[
-              EvaluationNotebook[], 
-              DefinitionNotebookClient`LoadDefinitionNotebook[
-               "Function", DefinitionNotebookClient`$CurrentNotebook]; 
-              DefinitionNotebookClient`PackageScope`setHint[
-               "Suggestion", "Function", 
-                DefinitionNotebookClient`$CurrentNotebook, 
-                "6eb85ba5-9295-4037-b762-aa058bac0aad", 184251013, 
-                "CodeInspectionIssue/UppercaseVariable", <|
-                "Message" -> 
-                 "Code Issue: Suspicious uppercase symbol as variable: NTIES",
-                  "SourceInformation" -> 
-                 CodeInspector`InspectionObject[
-                  "UppercaseVariable", 
-                   "Suspicious uppercase symbol as variable: NTIES", 
-                   "Remark", <|
-                   CodeParser`Source -> {1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 2, 1, 
-                    15}, ConfidenceLevel -> 0.8|>], "File" -> None, "Hash" -> 
-                 8944590669503204313, "Position" -> ""|>]; 
-              DefinitionNotebookClient`PackageScope`seekAfter[184251013]; 
-              Null], TemplateBox[{
-               PaneBox[
-                TemplateBox[{
-                  RGBColor[
-                  0.49019607843137253`, 0.49019607843137253`, 
-                   0.49019607843137253`]}, "HintPodIconHint"], 
-                ImageSize -> {10, 10}, ImageSizeAction -> "ShrinkToFit", 
-                BaselinePosition -> Scaled[0.1]], "\" \"", 
-               "\"Code Issue: Suspicious uppercase symbol as variable: P\""}, 
-              "RowDefault"] :> DefinitionNotebookClient`WithCurrentNotebook[
-              EvaluationNotebook[], 
-              DefinitionNotebookClient`LoadDefinitionNotebook[
-               "Function", DefinitionNotebookClient`$CurrentNotebook]; 
-              DefinitionNotebookClient`PackageScope`setHint[
-               "Suggestion", "Function", 
-                DefinitionNotebookClient`$CurrentNotebook, 
-                "96d6bde9-7150-474a-95cc-9682b1510b9c", 184251013, 
-                "CodeInspectionIssue/UppercaseVariable", <|
-                "Message" -> 
-                 "Code Issue: Suspicious uppercase symbol as variable: P", 
-                 "SourceInformation" -> 
-                 CodeInspector`InspectionObject[
-                  "UppercaseVariable", 
-                   "Suspicious uppercase symbol as variable: P", "Remark", <|
-                   CodeParser`Source -> {1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 2, 1, 
-                    1}, ConfidenceLevel -> 0.8|>], "File" -> None, "Hash" -> 
-                 8944590669503204313, "Position" -> ""|>]; 
-              DefinitionNotebookClient`PackageScope`seekAfter[184251013]; 
-              Null], TemplateBox[{
-               PaneBox[
-                TemplateBox[{
-                  RGBColor[
-                  0.49019607843137253`, 0.49019607843137253`, 
-                   0.49019607843137253`]}, "HintPodIconHint"], 
-                ImageSize -> {10, 10}, ImageSizeAction -> "ShrinkToFit", 
-                BaselinePosition -> Scaled[0.1]], "\" \"", 
-               "\"Code Issue: Suspicious uppercase symbol as variable: R\""}, 
-              "RowDefault"] :> DefinitionNotebookClient`WithCurrentNotebook[
-              EvaluationNotebook[], 
-              DefinitionNotebookClient`LoadDefinitionNotebook[
-               "Function", DefinitionNotebookClient`$CurrentNotebook]; 
-              DefinitionNotebookClient`PackageScope`setHint[
-               "Suggestion", "Function", 
-                DefinitionNotebookClient`$CurrentNotebook, 
-                "929e1a59-46f2-40f5-8890-86f92b1a7d6f", 184251013, 
-                "CodeInspectionIssue/UppercaseVariable", <|
-                "Message" -> 
-                 "Code Issue: Suspicious uppercase symbol as variable: R", 
-                 "SourceInformation" -> 
-                 CodeInspector`InspectionObject[
-                  "UppercaseVariable", 
-                   "Suspicious uppercase symbol as variable: R", "Remark", <|
-                   CodeParser`Source -> {1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 2, 1, 
-                    3}, ConfidenceLevel -> 0.8|>], "File" -> None, "Hash" -> 
-                 8944590669503204313, "Position" -> ""|>]; 
-              DefinitionNotebookClient`PackageScope`seekAfter[184251013]; 
-              Null], TemplateBox[{
-               PaneBox[
-                TemplateBox[{
-                  RGBColor[
-                  0.49019607843137253`, 0.49019607843137253`, 
-                   0.49019607843137253`]}, "HintPodIconHint"], 
-                ImageSize -> {10, 10}, ImageSizeAction -> "ShrinkToFit", 
-                BaselinePosition -> Scaled[0.1]], "\" \"", 
-               "\"Code Issue: Suspicious uppercase symbol as variable: \
-SLOPE\""}, "RowDefault"] :> DefinitionNotebookClient`WithCurrentNotebook[
-              EvaluationNotebook[], 
-              DefinitionNotebookClient`LoadDefinitionNotebook[
-               "Function", DefinitionNotebookClient`$CurrentNotebook]; 
-              DefinitionNotebookClient`PackageScope`setHint[
-               "Suggestion", "Function", 
-                DefinitionNotebookClient`$CurrentNotebook, 
-                "6b1ec094-df5f-4fd2-90bc-f0053b9280a9", 184251013, 
-                "CodeInspectionIssue/UppercaseVariable", <|
-                "Message" -> 
-                 "Code Issue: Suspicious uppercase symbol as variable: SLOPE",
-                  "SourceInformation" -> 
-                 CodeInspector`InspectionObject[
-                  "UppercaseVariable", 
-                   "Suspicious uppercase symbol as variable: SLOPE", 
-                   "Remark", <|
-                   CodeParser`Source -> {1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 2, 1, 
-                    7}, ConfidenceLevel -> 0.8|>], "File" -> None, "Hash" -> 
-                 8944590669503204313, "Position" -> ""|>]; 
-              DefinitionNotebookClient`PackageScope`seekAfter[184251013]; 
-              Null]}, Appearance -> None], "BoxID" -> "WarningCountButton", 
-          StripOnInput -> False], 
-         TagBox[
-          ButtonBox[
-           TagBox[
-            PaneSelectorBox[{False -> GraphicsBox[{
-                 GrayLevel[
-                  NCache[
-                   Rational[64, 85], 0.7529411764705882]], 
-                 
-                 PolygonBox[{{-0.282842712474619, -0.42426406871192845`}, \
-{-0.42426406871192845`, -0.282842712474619}, {0.282842712474619, 
-                  0.42426406871192845`}, {0.42426406871192845`, 
-                  0.282842712474619}}], 
-                 
-                 PolygonBox[{{0.42426406871192845`, -0.282842712474619}, {
-                  0.282842712474619, -0.42426406871192845`}, \
-{-0.42426406871192845`, 0.282842712474619}, {-0.282842712474619, 
-                  0.42426406871192845`}}]}, ImageSize -> 18, PlotRangePadding -> 
-                0, PlotRange -> 0.7, Background -> None], True -> GraphicsBox[{
-                 GrayLevel[
-                  NCache[
-                   Rational[128, 255], 0.5019607843137255]], 
-                 
-                 PolygonBox[{{-0.282842712474619, -0.42426406871192845`}, \
-{-0.42426406871192845`, -0.282842712474619}, {0.282842712474619, 
-                  0.42426406871192845`}, {0.42426406871192845`, 
-                  0.282842712474619}}], 
-                 
-                 PolygonBox[{{0.42426406871192845`, -0.282842712474619}, {
-                  0.282842712474619, -0.42426406871192845`}, \
-{-0.42426406871192845`, 0.282842712474619}, {-0.282842712474619, 
-                  0.42426406871192845`}}]}, ImageSize -> 18, PlotRangePadding -> 
-                0, PlotRange -> 0.7, Background -> None]}, 
-             Dynamic[
-              CurrentValue["MouseOver"]], ImageSize -> Automatic, 
-             FrameMargins -> 0], 
-            MouseAppearanceTag["LinkHand"]], ButtonFunction :> 
-           With[{DefinitionNotebookClient`Stripes`PackagePrivate`nbo$ = 
-              EvaluationNotebook[]}, 
-             CurrentValue[
-              DefinitionNotebookClient`Stripes`PackagePrivate`nbo$, 
-               DockedCells] = If[
-               TrueQ[
-                MemberQ[
-                 CurrentValue["ModifierKeys"], "Control"]], 
-               DeleteCases[
-                Flatten[{
-                  CurrentValue[
-                  DefinitionNotebookClient`Stripes`PackagePrivate`nbo$, 
-                   DockedCells]}], 
-                Cell[
-                 Blank[], "StripeCell", 
-                 BlankNullSequence[]]], 
-               DeleteCases[
-                Flatten[{
-                  CurrentValue[
-                  DefinitionNotebookClient`Stripes`PackagePrivate`nbo$, 
-                   DockedCells]}], 
-                Condition[
-                 Pattern[DefinitionNotebookClient`Stripes`PackagePrivate`c$, 
-                  Blank[Cell]], 
-                 Not[
-                  FreeQ[
-                  DefinitionNotebookClient`Stripes`PackagePrivate`c$, 
-                   "f82b0a45-06f4-4042-9eca-2ae5b5219221"]]]]]], Appearance -> 
-           None, BoxID -> "f82b0a45-06f4-4042-9eca-2ae5b5219221", Evaluator -> 
+                   "aedbdef8-5d78-41db-8c2e-5477f1362898"]]]]]], Appearance -> 
+           None, BoxID -> "aedbdef8-5d78-41db-8c2e-5477f1362898", Evaluator -> 
            Automatic, Method -> "Preemptive"], 
           MouseAppearanceTag["LinkHand"]]}}, 
        GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Baseline}}}, 
@@ -4736,7 +4310,7 @@ WyabbVsUI30dbWyR5mC4Y6npzAQV7A7CHW8e0ORJGTUV01ufdzMGR2GbTwVmCj3d8A9cd0NNHoiRcl\
      "FunctionResource`", "FunctionResource`DefinitionNotebook`"}, 
     "DefaultContentMethod" -> "Legacy", "HintPods" -> True, "LoadingMethod" -> 
     "Paclet", "PacletName" -> "FunctionResource"}, 
-  "SubmissionReviewData" -> {"Review" -> False}, "ToolsOpen" -> False, 
+  "SubmissionReviewData" -> {"Review" -> False}, "ToolsOpen" -> True, 
   "UpdatedTimestamp" -> 3.9900241713728493`17.353550515789575*^9, 
   "TemplateVersion" -> "2025.05.14", "StatusMessage" -> "", "AutoUpdate" -> 
   True},
