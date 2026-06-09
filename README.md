@@ -37,8 +37,10 @@ KS2sample[data1, data2, alternative, weight]
 **Low-level interface** — accepts precomputed inputs and returns the p-value:
 
 ```mathematica
-KS2sample[m, n, alternative, M, q]
-KS2sample[m, n, alternative, M, q, wvec]
+KS2sample[m, n, q]
+KS2sample[m, n, alternative, q]
+KS2sample[m, n, alternative, multiplicity, q]
+KS2sample[m, n, alternative, multiplicity, q, wvec]
 ```
 
 | Argument | Description |
@@ -47,7 +49,7 @@ KS2sample[m, n, alternative, M, q, wvec]
 | `alternative` | `"TwoSided"` (default), `"Greater"`, or `"Less"`. |
 | `weight` | `0` (unweighted, default); `ν ∈ (0,1]` for W(t) = 1/[t(1−t)]^ν; or a user-supplied pure function. |
 | `m`, `n` | Sample sizes. |
-| `M` | Integer list of length k: multiplicity of each distinct pooled-sample value. `Total[M] == m+n`. |
+| `multiplicity` | Integer list of length k: count of each distinct pooled-sample value. `Total[multiplicity] == m+n`. |
 | `q` | Observed value of the KS statistic. |
 | `wvec` | Weight vector of length m+n−1: `wvec[[i]] = W(i/(m+n))`. |
 
@@ -56,12 +58,16 @@ KS2sample[m, n, alternative, M, q, wvec]
 ```mathematica
 (* Unweighted two-sided test *)
 KS2sample[data1, data2]
-(* {0.233333, 17/143} *)
+(* -> {0.233333, 17/143} *)
 
 (* One-sided test with Anderson–Darling weight (ν = 1/2) *)
 KS2sample[data1, data2, "Greater", 1/2]
 
-(* Low-level call: Nikiforov (1994) example *)
+(* Simplest low-level call: no ties, two-sided *)
+KS2sample[5, 6, 3/10]
+(* -> 69/77 *)
+
+(* Low-level call with tied observations *)
 KS2sample[120, 150, "TwoSided", {80, 70, 40, 80}, 1/10]
 ```
 
@@ -80,22 +86,26 @@ Kuiper2sample[data1, data2]
 **Low-level interface:**
 
 ```mathematica
-Kuiper2sample[m, n, M, q]
+Kuiper2sample[m, n, q]
+Kuiper2sample[m, n, multiplicity, q]
 ```
 
 The Kuiper statistic V = Δ⁺ + Δ⁻ is the sum of the supremum and infimum of
 the empirical CDF difference. Its invariance to cyclic shifts makes it
 particularly suited to circular and seasonal data.
 
-**Example:**
+**Examples:**
 
 ```mathematica
-(* Circular data with ties *)
-data1 = Join[ConstantArray[Pi/2, 30], ConstantArray[Pi, 30],
-             ConstantArray[3 Pi/2, 30], ConstantArray[2 Pi, 30]];
-data2 = Join[ConstantArray[Pi/2, 50], ConstantArray[Pi, 40],
-             ConstantArray[3 Pi/2, 10], ConstantArray[2 Pi, 50]];
+(* Data interface *)
 Kuiper2sample[data1, data2]
+
+(* Simplest low-level call: no ties *)
+Kuiper2sample[5, 6, 1/2]
+(* -> 17/21 *)
+
+(* Low-level call with tied observations *)
+Kuiper2sample[120, 150, {80, 70, 40, 80}, 11/60]
 ```
 
 ---
@@ -111,9 +121,12 @@ extreme as the observed value.
 
 The p-value is computed via the recurrence of Nikiforov (1994), extended by
 Dimitrova, Jia, Kaishev (2026) to support arbitrary weight functions and
-tied observations. The recurrence runs in O(mn) time for `KS2sample` and
-O((mn)²) for `Kuiper2sample`. All arithmetic is exact; no floating-point
-tolerance parameter is required.
+tied observations. All arithmetic is exact; no floating-point tolerance
+parameter is required.
+
+The recurrence runs in O(mn) time for `KS2sample`. For `Kuiper2sample` the
+complexity is O(mn · LCM[m,n]): when m = n this is O(m³); when m and n are
+coprime (e.g. m = n+1), LCM[m,n] = mn and complexity is O(m²n²).
 
 By Theorem 1 (KS) and Theorem 3 (Kuiper) of Dimitrova, Jia, Kaishev (2026),
 the permutation p-value is asymptotically consistent with the unconditional
@@ -177,9 +190,9 @@ The algorithms are identical; the implementations differ in two respects:
 | R function | Mathematica equivalent |
 |---|---|
 | `KS2sample` | `KS2sample[data1, data2, …]` |
-| `KS2sample_Rcpp` / `KS2sample_c_Rcpp` | `KS2sample[m, n, alternative, M, q, wvec]` |
+| `KS2sample_Rcpp` / `KS2sample_c_Rcpp` | `KS2sample[m, n, alternative, multiplicity, q, wvec]` |
 | `Kuiper2sample` | `Kuiper2sample[data1, data2]` |
-| `Kuiper2sample_Rcpp` / `Kuiper2sample_c_Rcpp` | `Kuiper2sample[m, n, M, q]` |
+| `Kuiper2sample_Rcpp` / `Kuiper2sample_c_Rcpp` | `Kuiper2sample[m, n, multiplicity, q]` |
 
 KSgeneral is available at:
 - [KSgeneral on CRAN](https://CRAN.R-project.org/package=KSgeneral)
