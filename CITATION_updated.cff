@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use these Wolfram Language functions, please cite the associated paper below."
+title: "KS2sample and Kuiper2sample"
+type: software
+authors:
+  - family-names: "Jia"
+    given-names: "Yun"
+license: MIT
+repository-code: "https://github.com/fakecloudsjy/KS2sample-Kuiper2sample"
+url: "https://github.com/fakecloudsjy/KS2sample-Kuiper2sample"
+keywords:
+  - "Kolmogorov-Smirnov test"
+  - "Kuiper test"
+  - "exact p-values"
+  - "permutation test"
+  - "Wolfram Language"
+  - "Mathematica"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Dimitrova"
+      given-names: "Dimitrina S."
+    - family-names: "Jia"
+      given-names: "Yun"
+    - family-names: "Kaishev"
+      given-names: "Vladimir K."
+  title: "Efficient exact calculation of p-values of the two-sample Kolmogorov-Smirnov and Kuiper tests"
+  journal: "Journal of Statistical Computation and Simulation"
+  year: 2026
+  doi: "10.1080/00949655.2026.2721410"
+  url: "https://doi.org/10.1080/00949655.2026.2721410"
