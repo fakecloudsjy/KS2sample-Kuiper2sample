@@ -1,30 +1,40 @@
-# KS2sample and Kuiper2sample
+# KS2Sample and Kuiper2Sample
 
-Wolfram Language implementations of the exact two-sample Kolmogorov–Smirnov
-and Kuiper tests, companion to the R package
-[KSgeneral](https://CRAN.R-project.org/package=KSgeneral) and to the paper:
+Wolfram Language implementations of the exact two-sample Kolmogorov–Smirnov and Kuiper tests, companion to the R package [KSgeneral](https://CRAN.R-project.org/package=KSgeneral) and to the paper:
 
-> Dimitrova, D. S., Jia, Y., Kaishev, V. K. (2026). Efficient Exact
-> Calculation of p-values of the Two-sample Kolmogorov–Smirnov and Kuiper
-> Tests. *To appear in Journal of Statistical Computation and Simulation.*
+[Dimitrova, D. S., Jia, Y., & Kaishev, V. K. (2026).  Efficient Exact Calculation of p-values of the Two-sample Kolmogorov–Smirnov and Kuiper Tests. *Journal of Statistical Computation and Simulation*, 1–19.](https://doi.org/10.1080/00949655.2026.2721410)
 
-The functions provide exact permutation p-values for continuous, discrete, and
-mixed distributions, including data with ties. Because the Wolfram Language
-performs exact rational arithmetic natively, p-values are returned as exact
-rational numbers and can be evaluated to arbitrary numerical precision — a
-property not available in the R/C++ implementation.
+The functions provide exact permutation p-values for continuous, discrete, and mixed distributions, including data with ties. Because the Wolfram Language performs exact rational arithmetic natively, p-values are returned as exact rational numbers and can be evaluated to arbitrary numerical precision. The current R/C++ implementation in `KSgeneral` instead uses floating-point arithmetic.
 
 Both functions are submitted to the
 [Wolfram Function Repository](https://resources.wolframcloud.com/FunctionRepository/).
+
+
+---
+
+## Repository Contents
+
+| Path | Description |
+| --- | --- |
+| `KS2Sample/KS2Sample.nb` | Wolfram Function Repository definition notebook for `KS2Sample`. |
+| `KS2Sample/KS2Sample.wl` | Plain-text Wolfram Language implementation of `KS2Sample`. |
+| `Kuiper2Sample/Kuiper2Sample.nb` | Wolfram Function Repository definition notebook for `Kuiper2Sample`. |
+| `Kuiper2Sample/Kuiper2Sample.wl` | Plain-text Wolfram Language implementation of `Kuiper2Sample`. |
+| `CITATION.cff` | Citation metadata for GitHub and citation-management tools. |
+| `LICENSE` | MIT License for the software in this repository. |
+| `README.md` | Project documentation. |
 
 ---
 
 ## Functions
 
-### `KS2sample`
+### `KS2Sample`
 
-Computes the exact p-value of the (weighted) two-sample Kolmogorov–Smirnov
-test.
+`KS2Sample` computes exact permutation p-values for the two-sample Kolmogorov–Smirnov test.
+
+The two-sample Kolmogorov–Smirnov statistic measures the maximum absolute difference between the empirical distribution functions of the two samples.
+
+The implementation supports continuous, discrete, and mixed distributions, including samples containing ties.
 
 **Data interface** — accepts raw samples and returns `{statistic, p-value}`:
 
@@ -75,7 +85,12 @@ KS2sample[120, 150, "TwoSided", {80, 70, 40, 80}, 1/10]
 
 ### `Kuiper2sample`
 
-Computes the exact p-value of the two-sample Kuiper test.
+`Kuiper2Sample` computes exact permutation p-values for the two-sample Kuiper test.
+
+The Kuiper statistic \(V = D^+ + D^-\) is the sum of the two one-sided maximum deviations between the empirical distribution functions. Its invariance under cyclic transformations makes it particularly useful for circular and seasonal data.
+
+As with `KS2Sample`, the implementation supports continuous, discrete, and mixed distributions, including samples containing ties.
+
 
 **Data interface:**
 
@@ -149,15 +164,6 @@ p-value for arbitrary underlying distributions F and G.
 
 ---
 
-## Repository Contents
-
-| File | Description |
-|---|---|
-| `KS2sample.nb` | Wolfram Function Repository definition notebook for `KS2sample`. |
-| `Kuiper2sample.nb` | Wolfram Function Repository definition notebook for `Kuiper2sample`. |
-| `README.md` | This file. |
-
----
 
 ## Installation
 
@@ -170,6 +176,21 @@ ResourceFunction["Kuiper2sample"][data1, data2]
 ```
 
 Until publication, load the definition notebooks directly in Mathematica.
+
+---
+
+## Wolfram Language Source
+
+The `.nb` files are Wolfram Function Repository definition notebooks containing the function definitions, documentation, examples, and repository metadata.
+
+The corresponding `.wl` files provide the function implementations as plain-text Wolfram Language source, making them easier to inspect, version-control, and use directly from GitHub.
+
+For example:
+
+```wl
+Get["KS2Sample/KS2Sample.wl"]
+Get["Kuiper2Sample/Kuiper2Sample.wl"]
+```
 
 ---
 
@@ -202,9 +223,7 @@ KSgeneral is available at:
 
 ## References
 
-Dimitrova, D. S., Jia, Y., Kaishev, V. K. (2026). Efficient Exact Calculation
-of p-values of the Two-sample Kolmogorov–Smirnov and Kuiper Tests. *To appear
-in Journal of Statistical Computation and Simulation.*
+Dimitrova, D. S., Jia, Y., & Kaishev, V. K. (2026). Efficient Exact Calculation of p-values of the Two-sample Kolmogorov–Smirnov and Kuiper Tests. *Journal of Statistical Computation and Simulation*, 1–19.  
 
 Nikiforov, A. M. (1994). Algorithm AS 288: Exact Smirnov Two-Sample Tests for
 Arbitrary Distributions. *Journal of the Royal Statistical Society, Series C*,
