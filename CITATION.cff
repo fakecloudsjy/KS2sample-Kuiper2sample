@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "If you use these Wolfram Language functions, please cite the associated paper below."
-title: "KS2sample and Kuiper2sample"
+message: "If you use KS2Sample or Kuiper2Sample in research, please cite the associated article."
+title: "KS2Sample and Kuiper2Sample"
 type: software
 authors:
   - family-names: "Jia"
@@ -15,6 +15,7 @@ keywords:
   - "permutation test"
   - "Wolfram Language"
   - "Mathematica"
+
 preferred-citation:
   type: article
   authors:
@@ -27,5 +28,7 @@ preferred-citation:
   title: "Efficient exact calculation of p-values of the two-sample Kolmogorov-Smirnov and Kuiper tests"
   journal: "Journal of Statistical Computation and Simulation"
   year: 2026
+  start: 1
+  end: 19
   doi: "10.1080/00949655.2026.2721410"
   url: "https://doi.org/10.1080/00949655.2026.2721410"
