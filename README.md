@@ -144,7 +144,7 @@ The recurrence runs in O(mn) time for `KS2Sample`. For `Kuiper2Sample` the
 complexity is O(mn · LCM[m,n]): when m = n this is O(m³); when m and n are
 coprime (e.g. m = n+1), LCM[m,n] = mn and complexity is O(m²n²).
 
-By Theorem 1 (KS) and Theorem 3 (Kuiper) of Dimitrova, Jia, Kaishev (2026),
+By Theorem 2.1 (KS) and Theorem 2.6 (Kuiper) of Dimitrova, Jia, Kaishev (2026),
 the permutation p-value is asymptotically consistent with the unconditional
 p-value for arbitrary underlying distributions F and G.
 
