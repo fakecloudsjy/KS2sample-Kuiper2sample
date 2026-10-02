@@ -16,8 +16,10 @@ rational numbers and can be evaluated to arbitrary numerical precision — a
 property not available in the R/C++ implementation in `KSgeneral`, which uses
 floating-point arithmetic.
 
-Both functions are submitted to the
-[Wolfram Function Repository](https://resources.wolframcloud.com/FunctionRepository/).
+Both functions are published on the Wolfram Function Repository:
+
+- [`KS2Sample`](https://resources.wolframcloud.com/FunctionRepository/resources/KS2Sample/)
+- [`Kuiper2Sample`](https://resources.wolframcloud.com/FunctionRepository/resources/Kuiper2Sample/)
 
 ---
 
@@ -167,14 +169,26 @@ p-value for arbitrary underlying distributions F and G.
 
 ## Installation
 
-Once published to the Wolfram Function Repository, load with:
+Both functions are available directly from the Wolfram Function Repository:
+
+- [`KS2Sample`](https://resources.wolframcloud.com/FunctionRepository/resources/KS2Sample/)
+- [`Kuiper2Sample`](https://resources.wolframcloud.com/FunctionRepository/resources/Kuiper2Sample/)
+
+In a Mathematica or Wolfram Language session, call them via `ResourceFunction`:
 
 ```mathematica
 ResourceFunction["KS2Sample"][data1, data2]
 ResourceFunction["Kuiper2Sample"][data1, data2]
 ```
 
-Until publication, load the `.wl` files directly:
+No installation is required; `ResourceFunction` fetches and caches the function
+automatically on first use.
+
+### Wolfram Language Source
+
+The `.wl` files in this repository provide the implementations as plain-text
+Wolfram Language source, suitable for inspection, version control, or direct
+use without a network connection:
 
 ```mathematica
 Get["KS2Sample/KS2Sample.wl"]
